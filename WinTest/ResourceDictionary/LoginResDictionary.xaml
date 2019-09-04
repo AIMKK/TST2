@@ -1,0 +1,213 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WinTest"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <Style x:Key="loginText" TargetType="{x:Type TextBox}">
+        <!--<Setter Property="FontSize" Value="16" />-->
+        <Setter Property="Height" Value="34"/>
+        <!--<Setter Property="VerticalContentAlignment" Value="Center" />-->
+    </Style>
+    <Style x:Key="loginCobox" TargetType="{x:Type ComboBox}">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <DataTemplate x:Key="loginHeader" >
+        <Border BorderBrush="#41B1E1" BorderThickness="0" >
+            <Grid  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="190"></ColumnDefinition>
+                    <ColumnDefinition Width="190"></ColumnDefinition>
+                    <ColumnDefinition Width="190"></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush>#2A98BD</SolidColorBrush>
+                </Grid.Background>
+                <StackPanel Grid.Column="0"   Orientation="Horizontal" >
+                    <TextBlock FontSize="20" Foreground="White" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Margin="10,0,0,0" FontSize="14" Foreground="White" Text="{Binding IrmsVersion}" VerticalAlignment="Center" ></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1"   Orientation="Horizontal">
+                    <TextBlock Margin="10,0,0,0" FontSize="14" Foreground="White" Text="{Binding LoginIP}" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <TextBlock Margin="10,0,0,0" FontSize="14" Foreground="White" Text="{Binding DBIP}" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="3"  Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <TextBlock FontSize="20" Foreground="White" Margin="10" VerticalAlignment="Center" ></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="loginLeft">
+        <Grid VerticalAlignment="Center" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock  Grid.Column="1" Grid.Row="0"  FontSize="25"  TextAlignment="Center" VerticalAlignment="Center" Height="130" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding SelectLocation}"  CommandParameter="RoadShow"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Text="{Binding LoginLocationCode}"  Foreground="#2A98BD" Width="35" Height="20"  FontSize="11">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RoadShowTypeSelected}" Value="False">
+                                    <Setter  Property="Visibility"  Value="Hidden" >
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+               </TextBlock>
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Background" >
+                            <Setter.Value>
+                                <ImageBrush ImageSource="pack://application:,,,/Images/btn_RS_CHS.png" Stretch="UniformToFill" TileMode="None" />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter  Property="Background"  >
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_RS_CHS_over.png" Stretch="UniformToFill" TileMode="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding RoadShowTypeSelected}" Value="True">
+                                <Setter  Property="Background"  >
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_RS_CHS_click.png" Stretch="UniformToFill" TileMode="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBlock  Grid.Column="0" Grid.Row="1" FontSize="25"  TextAlignment="Center" VerticalAlignment="Center" Height="130">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding SelectLocation}"  CommandParameter="Shop"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+               <TextBlock Text="{Binding LoginLocationCode}"  Foreground="#2A98BD" Width="35" Height="20"  FontSize="11">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ShopTypeSelected}" Value="False">
+                                    <Setter  Property="Visibility"  Value="Hidden" >
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+               </TextBlock>
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Background" >
+                            <Setter.Value>
+                                <ImageBrush ImageSource="pack://application:,,,/Images/btn_SHOP_CHS.png" Stretch="UniformToFill" TileMode="None" />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>                            
+                            
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter  Property="Background"  >
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_SHOP_CHS_over.png" Stretch="UniformToFill" TileMode="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding ShopTypeSelected}" Value="True">
+                                <Setter  Property="Background"  >
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_SHOP_CHS_click.png" Stretch="UniformToFill" TileMode="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBlock  Grid.Column="1" Grid.Row="2" FontSize="25" TextAlignment="Center" VerticalAlignment="Center" Height="130">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding SelectLocation}"  CommandParameter="Office"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                 <TextBlock Text="{Binding LoginLocationCode}" Foreground="#2A98BD" Width="40" Height="20" FontSize="11">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding OfficeTypeSelected}" Value="False">
+                                    <Setter  Property="Visibility"  Value="Hidden" >
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+               </TextBlock>
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Background" >
+                            <Setter.Value>
+                                <ImageBrush ImageSource="pack://application:,,,/Images/btn_WH_CHS.png" Stretch="UniformToFill" TileMode="None" />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter  Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_WH_CHS_over.png" Stretch="UniformToFill" TileMode="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding OfficeTypeSelected}" Value="True">
+                                <Setter  Property="Background"  >
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_WH_CHS_click.png" Stretch="UniformToFill" TileMode="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="loginRight" >
+        <Grid  VerticalAlignment="Center" Margin="0,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock  Grid.Column="0"  FontSize="25" 
+                        TextAlignment="Center" VerticalAlignment="Center"  Height="130" Width="150">
+                <TextBlock.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/login_logo.jpg" Stretch="UniformToFill" TileMode="None" />
+                </TextBlock.Background>
+            </TextBlock>
+            <StackPanel Grid.Column="1">
+                <ComboBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14" ItemsSource="{Binding LangList}" DisplayMemberPath="LanguageName" SelectedValuePath="LanguageCode" SelectedValue="{Binding SelectLang}" ></ComboBox>
+                <TextBox  Margin="0,0,0,10" Height="30" Text="{Binding UserCode}" x:Name="loginUsercode" VerticalContentAlignment="Center" FontSize="14"></TextBox>
+                <PasswordBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14"></PasswordBox>
+                <Button  Margin="0,10,0,10"  Command="{Binding LoginCommand}" FontSize="14" VerticalContentAlignment="Center">登陆</Button>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
