@@ -15,14 +15,18 @@ namespace WinTest
     {
         public ICommand LoginCommand { get; set; }
 
-        public RelayCommand<object> FormLoad { get; set; }
+        public RelayCommand<Window> FormLoaded { get; set; }
+
+        public RelayCommand<Window> FormClosed { get; set; }
 
         public RelayCommand<ShowTargetViewParam> SelectLocation { get; set; }
 
         public LoginUIViewModel()
         {
             LoginCommand = new RelayCommand(loginBtnClick);
-            FormLoad = new RelayCommand<object>(formLoad);
+            //
+            FormLoaded = new RelayCommand<Window>(formLoaded);
+            FormClosed = new RelayCommand<Window>(formClosed);
             //
             SelectLocation = new RelayCommand<ShowTargetViewParam>(selectLocation);
             //
@@ -198,23 +202,34 @@ namespace WinTest
             Messenger.Default.Send(param, MessageTokens.ShowLoginLocationSelectUI);            
         }
 
-        private void formLoad(object sender)
+        private void formLoaded(Window win)
         {
-            Window win = sender as Window;
-            win.Dispatcher.BeginInvoke((Action)delegate ()
+            if (win!=null)
             {
-                //MessageBox.Show("formLoad");
-            }, null);
-            //System.Threading.Thread th = new System.Threading.Thread(() =>
-            //{
-            //    win.Dispatcher.BeginInvoke((Action)delegate ()
-            //    {
-            //        MessageBox.Show("formLoad");
-            //    }, null);
-
-            //});
-            //th.IsBackground = true;
-            //th.Start();
+                Messenger.Default.Register<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
+            }
         }
+
+        private void formClosed(Window win)
+        {
+            if (win != null)
+            {
+                Messenger.Default.Unregister<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
+            }
+        }
+        //
+        private void showTargetView(TargetViewCreateMessage message)
+        {
+            try
+            {
+                ShowTargetView.ShowView(message);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
     }
 }
