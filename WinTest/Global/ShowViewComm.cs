@@ -13,33 +13,43 @@ namespace WinTest
         public static void ShowView(TargetViewCreateMessage message)
         {
             Window view = null;
-            if (message != null && message.TargetViewType != null)
+            try
             {
-                view = Activator.CreateInstance(message.TargetViewType) as Window;
-            }
-            if (view == null)
-            {
-                return;
-            }
-            //
-            object dataContext = view.DataContext;
-            if (dataContext != null)//
-            {
-                if (message != null)
+                if (message == null)
                 {
-                    SetPropValue(dataContext, message.TargetViewModelInitPropName, message.TargetViewModelInitPropValue);
+                    return;
+                }
+                if (message.TargetViewType != null)
+                {
+                    view = Activator.CreateInstance(message.TargetViewType) as Window;
+                }
+                if (view == null)
+                {
+                    return;
+                }
+                //
+                object dataContext = view.DataContext;
+                if (dataContext != null)//
+                {
+                    if ((message.TargetViewModelInitPropName ?? "").Trim().Length > 0)
+                    {
+                        SetPropValue(dataContext, message.TargetViewModelInitPropName, message.TargetViewModelInitPropValue);
+                    }
+                }
+                //
+                if (message.TargetViewModalShow)
+                {
+                    view.ShowDialog();
+                }
+                else
+                {
+                    view.Show();
                 }
             }
-            //
-            if (message.TargetViewModalShow)
+            catch (Exception ex)
             {
-                view.ShowDialog();
-            }
-            else
-            {
-                view.Show();
-            }
 
+            }
         }
 
         /// <summary>
