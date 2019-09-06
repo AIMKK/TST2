@@ -199,14 +199,15 @@ namespace WinTest
             //
             TargetViewCreateMessage param = TargetViewCreateMessage.CreateInstance("LoginType", viewParam);
             //
-            Messenger.Default.Send(param, MessageTokens.ShowLoginLocationSelectUI);            
+            //Messenger.Default.Send(param, MessageTokens.ShowLoginLocationSelectUI);     
+            showTargetView(param);
         }
 
         private void formLoaded(Window win)
         {
             if (win!=null)
             {
-                Messenger.Default.Register<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
+                //Messenger.Default.Register<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
             }
         }
 
@@ -214,7 +215,7 @@ namespace WinTest
         {
             if (win != null)
             {
-                Messenger.Default.Unregister<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
+                //Messenger.Default.Unregister<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
             }
         }
         //

@@ -22,6 +22,17 @@ namespace WinTest
         /// <param name="targetViewModelInitPropName"></param>
         /// <param name="viewParam"></param>
         /// <returns></returns>
+        public static TargetViewCreateMessage CreateInstance(ShowTargetViewParam viewParam)
+        {
+            return CreateInstance("", viewParam);
+        }
+
+        /// <summary>
+        /// CreateInstance
+        /// </summary>
+        /// <param name="targetViewModelInitPropName"></param>
+        /// <param name="viewParam"></param>
+        /// <returns></returns>
         public static TargetViewCreateMessage CreateInstance(string targetViewModelInitPropName,ShowTargetViewParam viewParam)
         {
             TargetViewCreateMessage param = new TargetViewCreateMessage();
