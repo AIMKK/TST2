@@ -103,7 +103,13 @@
     <Compile Include="Global\HttpService.cs" />
     <Compile Include="Global\IRMSApiReqParam.cs" />
     <Compile Include="Global\LoginType.cs" />
+    <Compile Include="Global\MessageParam.cs" />
+    <Compile Include="Global\MessageTokens.cs" />
+    <Compile Include="Global\MultiValueConverter.cs" />
     <Compile Include="Global\RemoteApi.cs" />
+    <Compile Include="Global\ShowViewComm.cs" />
+    <Compile Include="Global\ShowTargetViewParam.cs" />
+    <Compile Include="Global\ShowTargetViewParamConverter.cs" />
     <Compile Include="testdependencyobj.cs" />
     <Compile Include="testweakref.cs" />
     <Compile Include="ViewModel\LoginLocationSelectUIViewModel.cs" />

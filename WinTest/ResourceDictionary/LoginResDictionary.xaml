@@ -55,7 +55,17 @@
             <TextBlock  Grid.Column="1" Grid.Row="0"  FontSize="25"  TextAlignment="Center" VerticalAlignment="Center" Height="130" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding SelectLocation}"  CommandParameter="RoadShow"/>
+                        <i:InvokeCommandAction Command="{Binding SelectLocation}">
+                            <i:InvokeCommandAction.CommandParameter>                                
+                                <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Source="{x:Type local:LoginLocationSelectUI }"/>
+                                        <Binding Source="RoadShow" />
+                                        <Binding Source="True"/>
+                                    </MultiBinding.Bindings>    
+                                </MultiBinding>
+                            </i:InvokeCommandAction.CommandParameter>
+                        </i:InvokeCommandAction>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <TextBlock Text="{Binding LoginLocationCode}"  Foreground="#2A98BD" Width="35" Height="20"  FontSize="11">
@@ -100,7 +110,17 @@
             <TextBlock  Grid.Column="0" Grid.Row="1" FontSize="25"  TextAlignment="Center" VerticalAlignment="Center" Height="130">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding SelectLocation}"  CommandParameter="Shop"/>
+                        <i:InvokeCommandAction Command="{Binding SelectLocation}">
+                            <i:InvokeCommandAction.CommandParameter>                                
+                                <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Source="{x:Type local:LoginLocationSelectUI }"/>
+                                        <Binding Source="shop" />
+                                        <Binding Source="True"/>
+                                    </MultiBinding.Bindings>    
+                                </MultiBinding>
+                            </i:InvokeCommandAction.CommandParameter>
+                        </i:InvokeCommandAction>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                <TextBlock Text="{Binding LoginLocationCode}"  Foreground="#2A98BD" Width="35" Height="20"  FontSize="11">
@@ -145,7 +165,18 @@
             <TextBlock  Grid.Column="1" Grid.Row="2" FontSize="25" TextAlignment="Center" VerticalAlignment="Center" Height="130">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding SelectLocation}"  CommandParameter="Office"/>
+                        <!--<i:InvokeCommandAction Command="{Binding SelectLocation}"  CommandParameter="{x:Type local:LoginLocationSelectUI }"/>-->     
+                        <i:InvokeCommandAction Command="{Binding SelectLocation}">
+                            <i:InvokeCommandAction.CommandParameter>                                
+                                <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Source="{x:Type local:LoginLocationSelectUI }"/>
+                                        <Binding Source="office"/>
+                                        <Binding Source="True"/>
+                                    </MultiBinding.Bindings>    
+                                </MultiBinding>
+                            </i:InvokeCommandAction.CommandParameter>
+                        </i:InvokeCommandAction>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                  <TextBlock Text="{Binding LoginLocationCode}" Foreground="#2A98BD" Width="40" Height="20" FontSize="11">

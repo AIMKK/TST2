@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,29 @@ namespace WinTest
         public LoginUI()
         {
             InitializeComponent();
+
+            Messenger.Default.Register<TargetViewCreateMessage>(this, MessageTokens.ShowLoginLocationSelectUI, showSelectUI);
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);             
+            Messenger.Default.Unregister<TargetViewCreateMessage>(this, MessageTokens.ShowLoginLocationSelectUI, showSelectUI);
+        }
+        //
+        private void showSelectUI(TargetViewCreateMessage message)
+        {
+            try
+            {
+                ShowTargetView.ShowView(message);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+          
+        }
+
+        
     }
 }

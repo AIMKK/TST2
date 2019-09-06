@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinTest"
         mc:Ignorable="d"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         WindowStartupLocation="CenterScreen"
         GlowBrush="#366CB3"                    
@@ -16,14 +17,22 @@
     <Window.DataContext>
         <Binding Path="LoginLocationSelectUIViewModel" Source="{StaticResource Locator}"></Binding>
     </Window.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding FormUnloaded}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FormLoaded}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="42"></RowDefinition>
         </Grid.RowDefinitions>
         <DataGrid 
             BorderBrush="#D8D8D9"
-            Margin="10 10 10 0"
+            Margin="2 5 2 0"
            
             BorderThickness="1"
             Grid.Row="0"
@@ -34,6 +43,7 @@
             CanUserSortColumns="False"
             GridLinesVisibility="All"
             HorizontalGridLinesBrush="#A0A0A0"
+            VerticalGridLinesBrush="#D8D8D9"
             SelectionMode="Single"
             ColumnHeaderHeight="30"
             HorizontalContentAlignment="Center" >
@@ -43,15 +53,14 @@
                 <DataGridTextColumn Binding="{Binding CompanyName}" Header="公司名称" IsReadOnly="True" Width="75"/>
                 <DataGridTextColumn Binding="{Binding LocationCode}" Header="位置" IsReadOnly="True"  Width="60"/>
                 <DataGridTextColumn Binding="{Binding LocationName}" Header="位置名称" IsReadOnly="True" Width="130"/>
-                <DataGridTextColumn Binding="{Binding Country}" Header="国家/地区" IsReadOnly="True" Width ="*"  />
+                <DataGridTextColumn Binding="{Binding Country}" Header="国家/地区" IsReadOnly="True" Width ="*"/>
             </DataGrid.Columns>
-
         </DataGrid>
         <Button  
             Width="100"
             Height="30"
             HorizontalAlignment="Right"
-            Margin="0 0 10 0"
+            Margin="0 0 2 0"
             Grid.Row="1" FontSize="14" FontFamily="宋体" FontWeight="Normal">
             选择
         </Button>

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,14 @@ namespace WinTest
 
         public RelayCommand<object> FormLoad { get; set; }
 
-        public RelayCommand<string> SelectLocation { get; set; }
+        public RelayCommand<ShowTargetViewParam> SelectLocation { get; set; }
 
         public LoginUIViewModel()
         {
             LoginCommand = new RelayCommand(loginBtnClick);
             FormLoad = new RelayCommand<object>(formLoad);
             //
-            SelectLocation = new RelayCommand<string>(selectLocation);
+            SelectLocation = new RelayCommand<ShowTargetViewParam>(selectLocation);
             //
             iniData();
         }
@@ -185,10 +186,16 @@ namespace WinTest
             testweakref.starttest();
         }
 
-        private void selectLocation(string btnType)
+        private void selectLocation(ShowTargetViewParam viewParam)
         {
-            LoginLocationSelectUI loginLocSelect = new LoginLocationSelectUI();
-            loginLocSelect.ShowDialog();
+            if (viewParam == null)
+            {
+                viewParam = new ShowTargetViewParam();
+            }
+            //
+            TargetViewCreateMessage param = TargetViewCreateMessage.CreateInstance("LoginType", viewParam);
+            //
+            Messenger.Default.Send(param, MessageTokens.ShowLoginLocationSelectUI);            
         }
 
         private void formLoad(object sender)
