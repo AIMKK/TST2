@@ -13,6 +13,7 @@
         ShowMinButton="False"
         ResizeMode="CanMinimize"
         WindowTransitionsEnabled="False"
+        x:Name="LoginLocSelectUI"
         Title="LoginLocationSelect" Height="300" Width="560">
     <Window.DataContext>
         <Binding Path="LoginLocationSelectUIViewModel" Source="{StaticResource Locator}"></Binding>
@@ -31,6 +32,7 @@
             <RowDefinition Height="42"></RowDefinition>
         </Grid.RowDefinitions>
         <DataGrid 
+            x:Name="gridLocation"
             BorderBrush="#D8D8D9"
             Margin="2 5 2 0"
            
@@ -45,8 +47,21 @@
             HorizontalGridLinesBrush="#A0A0A0"
             VerticalGridLinesBrush="#D8D8D9"
             SelectionMode="Single"
+            SelectionUnit="FullRow"
             ColumnHeaderHeight="30"
             HorizontalContentAlignment="Center" >
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding GridItemSelectCommand}" >
+                    <MouseBinding.CommandParameter>
+                        <MultiBinding Converter="{StaticResource ViewCommandParamConverter}">
+                            <MultiBinding.Bindings>
+                                <Binding ElementName="LoginLocSelectUI"/>
+                                <Binding ElementName="gridLocation" Path="SelectedItem" />
+                            </MultiBinding.Bindings>
+                        </MultiBinding>
+                    </MouseBinding.CommandParameter>
+                </MouseBinding>
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ShopNature}" Header="类型" IsReadOnly="True"  Width="85" />
                 <DataGridTextColumn Binding="{Binding CompanyCode}" Header="公司编号" IsReadOnly="True" Width="75"/>

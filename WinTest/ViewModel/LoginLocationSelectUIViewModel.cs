@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowUI;
 
 namespace WinTest
 {
@@ -16,13 +17,26 @@ namespace WinTest
 
         public RelayCommand<object> FormLoaded { get; set; }
 
+        public RelayCommand<ViewCommandParam> GridItemSelectCommand { get; set; }
+
         public string LoginType { get; set; }
 
+        /// <summary>
+        /// SelectedUserAccess
+        /// </summary>
+        public UserAccessObject SelectedUserAccess { get; private set; }
+
+        /// <summary>
+        /// LoginLocationSelectUIViewModel
+        /// </summary>
         public LoginLocationSelectUIViewModel()
         {
             FormUnloaded = new RelayCommand<object>(formUnloaded);
-
+            //
             FormLoaded = new RelayCommand<object>(formLoaded);
+            //
+            GridItemSelectCommand = new RelayCommand<ViewCommandParam>(gridItemSelectCommand);
+            //
             LoginType = Global.CurrentLoginType;
         }
 
@@ -71,6 +85,27 @@ namespace WinTest
             }
             //
             SimpleIoc.Default.Register<LoginLocationSelectUIViewModel>();
+        }
+
+        /// <summary>
+        /// gridDoubleClickCommand
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        private void gridItemSelectCommand(ViewCommandParam viewCmdParam)
+        {
+            if (viewCmdParam != null)
+            {
+                UserAccessObject userAccess = viewCmdParam.CommandParamValue as UserAccessObject;
+                if (userAccess!=null)
+                {
+                    SelectedUserAccess = userAccess;
+                }
+                //
+                if (viewCmdParam.CurrentView!=null)
+                {
+                    viewCmdParam.CurrentView.DialogResult = true;
+                }
+            }
         }
 
         public override void Cleanup()

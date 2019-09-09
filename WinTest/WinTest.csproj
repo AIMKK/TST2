@@ -102,14 +102,12 @@
     <Compile Include="Global\HttpResponseResultObject.cs" />
     <Compile Include="Global\HttpService.cs" />
     <Compile Include="Global\IRMSApiReqParam.cs" />
+    <Compile Include="Global\LoginLocationTypeConverter.cs" />
     <Compile Include="Global\LoginType.cs" />
-    <Compile Include="Global\TargetViewCreateMessage.cs" />
+    <Compile Include="Global\ShowTargetViewMessage.cs" />
     <Compile Include="Global\MessageTokens.cs" />
     <Compile Include="Global\MultiValueConverter.cs" />
     <Compile Include="Global\RemoteApi.cs" />
-    <Compile Include="Global\ShowTargetView.cs" />
-    <Compile Include="Global\ShowTargetViewParam.cs" />
-    <Compile Include="Global\ShowTargetViewParamConverter.cs" />
     <Compile Include="testdependencyobj.cs" />
     <Compile Include="testweakref.cs" />
     <Compile Include="ViewModel\LoginLocationSelectUIViewModel.cs" />
@@ -213,6 +211,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_WH_CHS_click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WindowUI\WindowUI.csproj">
+      <Project>{2eafa27e-beb1-452f-85e4-ec6b55a4f83c}</Project>
+      <Name>WindowUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

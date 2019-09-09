@@ -8,27 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WindowUI;
 
 namespace WinTest
 {
     public class LoginUIViewModel : ViewModelBase
     {
-        public ICommand LoginCommand { get; set; }
+        public RelayCommand<OpenViewParam> LoginCommand { get; set; }
 
         public RelayCommand<Window> FormLoaded { get; set; }
 
         public RelayCommand<Window> FormClosed { get; set; }
 
-        public RelayCommand<ShowTargetViewParam> SelectLocation { get; set; }
+        public RelayCommand<OpenViewParam> ShowLoginLocationSelect { get; set; }
 
         public LoginUIViewModel()
         {
-            LoginCommand = new RelayCommand(loginBtnClick);
+            LoginCommand = new RelayCommand<OpenViewParam>(loginBtnClick);
             //
             FormLoaded = new RelayCommand<Window>(formLoaded);
             FormClosed = new RelayCommand<Window>(formClosed);
             //
-            SelectLocation = new RelayCommand<ShowTargetViewParam>(selectLocation);
+            ShowLoginLocationSelect = new RelayCommand<OpenViewParam>(showLoginLocationSelect);
             //
             iniData();
         }
@@ -36,7 +37,7 @@ namespace WinTest
         public List<LanguageObject>LangList { get; set; }
 
         /// <summary>
-        /// 
+        /// SelectLang
         /// </summary>
         public string SelectLang
         {
@@ -50,75 +51,9 @@ namespace WinTest
             }
         }
         
-        public bool RoadShowTypeSelected
-        {
-            get
-            {
-                return string.Equals(Global.CurrentLoginType, LoginType.ROADSHOW, StringComparison.OrdinalIgnoreCase) ? true : false;
-            }
-            set
-            {
-                if (value)
-                {
-                    if (!string.Equals(Global.CurrentLoginType, LoginType.ROADSHOW, StringComparison.OrdinalIgnoreCase))
-                    {
-                        Global.CurrentLoginType = LoginType.ROADSHOW;
-                    }
-                }
-                else
-                {
-                    Global.CurrentLoginType = "";
-                }
-                RaisePropertyChanged("RoadShowSelected");
-            }
-        }
-
-        public bool ShopTypeSelected
-        {
-            get
-            {
-                return string.Equals(Global.CurrentLoginType, LoginType.SHOP, StringComparison.OrdinalIgnoreCase) ? true : false;
-            }
-            set
-            {
-                if (value)
-                {
-                    if (!string.Equals(Global.CurrentLoginType, LoginType.SHOP, StringComparison.OrdinalIgnoreCase))
-                    {
-                        Global.CurrentLoginType = LoginType.SHOP;
-                    }
-                }
-                else
-                {
-                    Global.CurrentLoginType = "";
-                }
-                RaisePropertyChanged("ShopTypeSelected");
-            }
-        }
-
-        public bool OfficeTypeSelected
-        {
-            get
-            {
-                return string.Equals(Global.CurrentLoginType, LoginType.OFFICE, StringComparison.OrdinalIgnoreCase)?true:false;
-            }
-            set
-            { 
-                if (value)
-                {
-                    if (!string.Equals(Global.CurrentLoginType, LoginType.OFFICE,StringComparison.OrdinalIgnoreCase))
-                    {
-                        Global.CurrentLoginType = LoginType.OFFICE;
-                    }                    
-                }
-                else
-                {
-                    Global.CurrentLoginType = "";
-                }
-                RaisePropertyChanged("OfficeTypeSelected");
-            }
-        }
-
+        /// <summary>
+        /// LoginLocationCode
+        /// </summary>
         public string LoginLocationCode
         {
             get { return Global.CurrentLoginLocationCode; }
@@ -129,6 +64,35 @@ namespace WinTest
             }
         }
 
+        /// <summary>
+        /// LoginLocationType
+        /// </summary>
+        public string LoginLocationType
+        {
+            get { return Global.CurrentLoginType; }
+            set
+            {
+                if (string.Equals(value, "INTERNET", StringComparison.OrdinalIgnoreCase)||
+                    string.Equals(value, "WAREHOUSE", StringComparison.OrdinalIgnoreCase))
+                {
+                    Global.CurrentLoginType = LoginType.OFFICE;
+                }
+                else if(string.Equals(value, "RETAIL", StringComparison.OrdinalIgnoreCase))
+                {
+                    Global.CurrentLoginType = LoginType.SHOP;
+                }
+                else if (string.Equals(value, "ROADSHOW", StringComparison.OrdinalIgnoreCase))
+                {
+                    Global.CurrentLoginType = LoginType.ROADSHOW;
+                }
+                else
+                {
+                    Global.CurrentLoginType = "";
+                }
+                
+                RaisePropertyChanged("LoginLocationType");
+            }
+        }
 
         private string irmsVersion = "版本:V1.1.1.1";
         public string IrmsVersion
@@ -183,26 +147,68 @@ namespace WinTest
             LangList.Add(new LanguageObject { LanguageCode = "ENG", LanguageName = "英文" });
         }
 
-        private void loginBtnClick()
+        /// <summary>
+        /// loginBtnClick
+        /// </summary>
+        /// <param name="viewParam"></param>
+        private void loginBtnClick(OpenViewParam viewParam)
         {
-            System.Windows.MessageBox.Show("login btn clicked");
+            if (viewParam==null)
+            {
+                return;
+            }
             //
-            testweakref.starttest();
+            try
+            {
+                TargetView targetView = new TargetView(viewParam.NewViewType);
+                targetView.Show();
+            }
+            catch (Exception ex)
+            {
+                WindowUI.NlogHelper.LogToFile(ex.ToString());
+                return;
+            }
+            //
+            if (viewParam.CurrentView!=null)
+            {
+                viewParam.CurrentView.Close();
+            }
         }
 
-        private void selectLocation(ShowTargetViewParam viewParam)
+        /// <summary>
+        /// showLoginLocationSelect
+        /// </summary>
+        /// <param name="viewParam"></param>
+        private void showLoginLocationSelect(OpenViewParam viewParam)
         {
             if (viewParam == null)
             {
-                viewParam = new ShowTargetViewParam();
+                return;
             }
             //
-            TargetViewCreateMessage param = TargetViewCreateMessage.CreateInstance("LoginType", viewParam);
+            TargetView targetView = new TargetView(viewParam.NewViewType);
             //
-            //Messenger.Default.Send(param, MessageTokens.ShowLoginLocationSelectUI);     
-            showTargetView(param);
+            LoginLocationSelectUIViewModel loginLocSelectVM= targetView.GetViewDataContext<LoginLocationSelectUIViewModel>();
+            if (loginLocSelectVM!=null)
+            {
+                loginLocSelectVM.LoginType = viewParam.NewViewInitValue as string;
+            }
+            //
+            if (targetView.ShowDialog()==true)
+            {
+                //
+                LoginLocationCode=loginLocSelectVM.SelectedUserAccess.LocationCode;
+                //
+                LoginLocationType = loginLocSelectVM.SelectedUserAccess.ShopNature;
+                //
+                Global.CurrentLoginCompanyCode = loginLocSelectVM.SelectedUserAccess.CompanyCode;
+            }
         }
 
+        /// <summary>
+        /// formLoaded
+        /// </summary>
+        /// <param name="win"></param>
         private void formLoaded(Window win)
         {
             if (win!=null)
@@ -211,6 +217,10 @@ namespace WinTest
             }
         }
 
+        /// <summary>
+        /// formClosed
+        /// </summary>
+        /// <param name="win"></param>
         private void formClosed(Window win)
         {
             if (win != null)
@@ -218,19 +228,6 @@ namespace WinTest
                 //Messenger.Default.Unregister<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
             }
         }
-        //
-        private void showTargetView(TargetViewCreateMessage message)
-        {
-            try
-            {
-                ShowTargetView.ShowView(message);
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-        }
-
+        
     }
 }

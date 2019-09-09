@@ -12,6 +12,8 @@ namespace WinTest
 
         public static string CurrentLoginLocationCode = "HK992";
 
+        public static string CurrentLoginCompanyCode = "";
+
         public static string CurrentLoginIP = "192.168.122.244";//backup db
 
         public static string CurrentLoginType = LoginType.OFFICE;

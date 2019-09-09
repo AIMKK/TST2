@@ -40,12 +40,21 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="RabbitMQ.Client, Version=3.6.9.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\SqliteUnBundle\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\System.Windows.Interactivity.dll</HintPath>
@@ -63,6 +72,19 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DesDisturb.cs" />
+    <Compile Include="Common\EmailHelper.cs" />
+    <Compile Include="Common\EncryptPassWord.cs" />
+    <Compile Include="Common\ExcelHelper.cs" />
+    <Compile Include="Common\FastMethodInvoker.cs" />
+    <Compile Include="Common\FuncComm.cs" />
+    <Compile Include="Common\HotKey.cs" />
+    <Compile Include="Common\MemoryClear.cs" />
+    <Compile Include="Common\TSHelper.cs" />
+    <Compile Include="Common\WebServiceAgent.cs" />
+    <Compile Include="CommandParam\CurrentView\ViewCommandParam.cs" />
+    <Compile Include="CommandParam\CurrentView\ViewCommandParamConverter.cs" />
+    <Compile Include="LogHelper\NlogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -76,10 +98,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="CommandParam\OpenView\OpenViewParam.cs" />
+    <Compile Include="CommandParam\OpenView\OpenViewParamConverter.cs" />
+    <Compile Include="CommandParam\OpenView\TargetView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,15 +115,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Dll\CommonServiceLocator.dll" />
-    <Content Include="Dll\ControlzEx.dll" />
-    <Content Include="Dll\GalaSoft.MvvmLight.dll" />
-    <Content Include="Dll\GalaSoft.MvvmLight.Extras.dll" />
-    <Content Include="Dll\GalaSoft.MvvmLight.Platform.dll" />
-    <Content Include="Dll\MahApps.Metro.dll" />
-    <Content Include="Dll\MahApps.Metro.IconPacks.Core.dll" />
-    <Content Include="Dll\MahApps.Metro.IconPacks.dll" />
+    <Content Include="Dll\Microsoft.Xaml.Behaviors.dll" />
+    <Content Include="Dll\NLog.dll" />
     <Content Include="Dll\RabbitMQ.Client.dll" />
+    <Content Include="Dll\SqliteUnBundle\System.Data.SQLite.dll" />
     <Content Include="Dll\System.Windows.Interactivity.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

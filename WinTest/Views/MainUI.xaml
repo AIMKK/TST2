@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WinTest"
         mc:Ignorable="d"
-        Title="MainUI" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="MainUI" Height="711" Width="995">
     <Grid>
         
     </Grid>
