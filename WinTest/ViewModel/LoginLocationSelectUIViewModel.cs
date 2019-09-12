@@ -17,8 +17,10 @@ namespace WinTest
 
         public RelayCommand<object> FormLoaded { get; set; }
 
-        public RelayCommand<ViewCommandParam> GridItemSelectCommand { get; set; }
+        public RelayCommand<CurrentViewParam> GridItemSelectCommand { get; set; }
 
+        public RelayCommand<ExCommandParameter> GridItemSelectCommand2 { get; set; }
+        
         public string LoginType { get; set; }
 
         /// <summary>
@@ -35,7 +37,8 @@ namespace WinTest
             //
             FormLoaded = new RelayCommand<object>(formLoaded);
             //
-            GridItemSelectCommand = new RelayCommand<ViewCommandParam>(gridItemSelectCommand);
+            GridItemSelectCommand = new RelayCommand<CurrentViewParam>(gridItemSelectCommand);
+            GridItemSelectCommand2 = new RelayCommand<ExCommandParameter>(gridItemSelectCommand2);
             //
             LoginType = Global.CurrentLoginType;
         }
@@ -86,12 +89,25 @@ namespace WinTest
             //
             SimpleIoc.Default.Register<LoginLocationSelectUIViewModel>();
         }
-
         /// <summary>
         /// gridDoubleClickCommand
         /// </summary>
         /// <param name="selectedItem"></param>
-        private void gridItemSelectCommand(ViewCommandParam viewCmdParam)
+        private void gridItemSelectCommand2(ExCommandParameter viewCmdParam)
+        {
+            if (viewCmdParam != null)
+            {
+                System.Windows.Input.MouseButtonEventArgs args = viewCmdParam.EventArgs as System.Windows.Input.MouseButtonEventArgs;
+                var v= args.OriginalSource;
+               
+            }
+        }
+        
+        /// <summary>
+        /// gridDoubleClickCommand
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        private void gridItemSelectCommand(CurrentViewParam viewCmdParam)
         {
             if (viewCmdParam != null)
             {
@@ -99,6 +115,10 @@ namespace WinTest
                 if (userAccess!=null)
                 {
                     SelectedUserAccess = userAccess;
+                }
+                else
+                {
+                    return;
                 }
                 //
                 if (viewCmdParam.CurrentView!=null)

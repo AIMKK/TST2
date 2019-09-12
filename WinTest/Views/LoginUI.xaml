@@ -13,7 +13,11 @@
         GlowBrush="#366CB3"                    
         BorderThickness="1" 
         ResizeMode="CanMinimize"
-        WindowTransitionsEnabled="False">
+        WindowTransitionsEnabled="False"
+        FontFamily="宋体"
+        
+        TextOptions.TextFormattingMode="Display">
+    
     <Window.DataContext>
         <Binding Path="LoginUIViewModel" Source="{StaticResource Locator}"></Binding>
     </Window.DataContext>
@@ -45,7 +49,7 @@
                         Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext}">
         </ContentControl>
         <!--right-->
-        <ContentControl Grid.Column="1" Grid.Row="1" ContentTemplate="{StaticResource loginRight}" 
+        <ContentControl  Grid.Column="1" Grid.Row="1" ContentTemplate="{StaticResource loginRight}" 
                         Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext}">
         </ContentControl>
     </Grid>

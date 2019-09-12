@@ -13,7 +13,8 @@
         ShowMinButton="False"
         ResizeMode="CanMinimize"
         WindowTransitionsEnabled="False"
-        x:Name="LoginLocSelectUI"
+        xmlns:winui="clr-namespace:WindowUI;assembly=WindowUI"
+        x:Name="LoginLocSelectUI"                      
         Title="LoginLocationSelect" Height="300" Width="560">
     <Window.DataContext>
         <Binding Path="LoginLocationSelectUIViewModel" Source="{StaticResource Locator}"></Binding>
@@ -31,11 +32,11 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="42"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid 
+        <winui:DataGrid 
             x:Name="gridLocation"
             BorderBrush="#D8D8D9"
             Margin="2 5 2 0"
-           
+            
             BorderThickness="1"
             Grid.Row="0"
             ItemsSource ="{Binding LoctionLst}"
@@ -49,20 +50,47 @@
             SelectionMode="Single"
             SelectionUnit="FullRow"
             ColumnHeaderHeight="30"
-            HorizontalContentAlignment="Center" >
-            <DataGrid.InputBindings>
-                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding GridItemSelectCommand}" >
-                    <MouseBinding.CommandParameter>
-                        <MultiBinding Converter="{StaticResource ViewCommandParamConverter}">
-                            <MultiBinding.Bindings>
-                                <Binding ElementName="LoginLocSelectUI"/>
-                                <Binding ElementName="gridLocation" Path="SelectedItem" />
-                            </MultiBinding.Bindings>
-                        </MultiBinding>
-                    </MouseBinding.CommandParameter>
-                </MouseBinding>
-            </DataGrid.InputBindings>
+            FontFamily="宋体"
+            FontSize="14"
+            TextOptions.TextFormattingMode="Display"
+            HorizontalContentAlignment="Center">           
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">                    
+                    <i:InvokeCommandAction Command="{Binding Path=DataContext.GridItemSelectCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" >
+                        <i:InvokeCommandAction.CommandParameter>
+                            <MultiBinding Converter="{StaticResource CurrentViewParamConverter}">
+                                <MultiBinding.Bindings>
+                                    <Binding ElementName="LoginLocSelectUI"/>
+                                    <Binding ElementName="gridLocation" Path="SelectedItem" />
+                                </MultiBinding.Bindings>
+                            </MultiBinding>
+                        </i:InvokeCommandAction.CommandParameter>
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            
             <DataGrid.Columns>
+                <!--<DataGridTemplateColumn Header="类型" IsReadOnly="True"  Width="85">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ShopNature}">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding Command="{Binding DataContext.GridItemSelectCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" MouseAction="LeftDoubleClick" >
+                                        <MouseBinding.CommandParameter>
+                                            <MultiBinding Converter="{StaticResource CurrentViewParamConverter}">
+                                                <MultiBinding.Bindings>
+                                                    <Binding ElementName="LoginLocSelectUI"/>
+                                                    <Binding ElementName="gridLocation" Path="SelectedItem" />
+                                                </MultiBinding.Bindings>
+                                            </MultiBinding>
+                                        </MouseBinding.CommandParameter>
+                                    </MouseBinding>
+                                </TextBlock.InputBindings>                               
+                            </TextBlock>
+                           
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
                 <DataGridTextColumn Binding="{Binding ShopNature}" Header="类型" IsReadOnly="True"  Width="85" />
                 <DataGridTextColumn Binding="{Binding CompanyCode}" Header="公司编号" IsReadOnly="True" Width="75"/>
                 <DataGridTextColumn Binding="{Binding CompanyName}" Header="公司名称" IsReadOnly="True" Width="75"/>
@@ -70,7 +98,7 @@
                 <DataGridTextColumn Binding="{Binding LocationName}" Header="位置名称" IsReadOnly="True" Width="130"/>
                 <DataGridTextColumn Binding="{Binding Country}" Header="国家/地区" IsReadOnly="True" Width ="*"/>
             </DataGrid.Columns>
-        </DataGrid>
+        </winui:DataGrid>
         <Button  
             Width="100"
             Height="30"

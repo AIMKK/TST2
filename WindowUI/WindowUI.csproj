@@ -82,8 +82,13 @@
     <Compile Include="Common\MemoryClear.cs" />
     <Compile Include="Common\TSHelper.cs" />
     <Compile Include="Common\WebServiceAgent.cs" />
-    <Compile Include="CommandParam\CurrentView\ViewCommandParam.cs" />
-    <Compile Include="CommandParam\CurrentView\ViewCommandParamConverter.cs" />
+    <Compile Include="CommandParam\CurrentView\CurrentViewParam.cs" />
+    <Compile Include="CommandParam\CurrentView\CurrentViewParamConverter.cs" />
+    <Compile Include="Controls\DataGrid.cs" />
+    <Compile Include="Controls\RowDoubleClickHandler.cs" />
+    <Compile Include="Controls\UIHelper.cs" />
+    <Compile Include="ExInteractivity\ExCommandParameter.cs" />
+    <Compile Include="ExInteractivity\ExInvokeCommandAction.cs" />
     <Compile Include="LogHelper\NlogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -121,5 +126,6 @@
     <Content Include="Dll\SqliteUnBundle\System.Data.SQLite.dll" />
     <Content Include="Dll\System.Windows.Interactivity.dll" />
   </ItemGroup>
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

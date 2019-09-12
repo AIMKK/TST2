@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace WindowUI
 {
-    public class ViewCommandParamConverter : IMultiValueConverter
+    public class CurrentViewParamConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -16,7 +16,7 @@ namespace WindowUI
             {
                 Window win = values[0] as Window;
                 object paramValue = values[1] as object;
-                return new ViewCommandParam { CurrentView = win, CommandParamValue = paramValue };
+                return new CurrentViewParam { CurrentView = win, CommandParamValue = paramValue };
             }
             return null;
         }

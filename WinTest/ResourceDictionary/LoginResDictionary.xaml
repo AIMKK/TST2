@@ -55,7 +55,7 @@
             <TextBlock  Grid.Column="1" Grid.Row="0"  FontSize="25"  TextAlignment="Center" VerticalAlignment="Center" Height="130" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding ShowLoginLocationSelect}">
+                        <i:InvokeCommandAction Command="{Binding  ShowLoginLocationSelect, RelativeSource={ RelativeSource Mode=FindAncestor, AncestorType=Grid}}">
                             <i:InvokeCommandAction.CommandParameter>                                
                                 <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
                                     <MultiBinding.Bindings>
@@ -221,7 +221,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="loginRight" >
+    <DataTemplate x:Key="loginRight">
         <Grid  VerticalAlignment="Center" Margin="0,0,20,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="180"></ColumnDefinition>
@@ -234,10 +234,10 @@
                 </TextBlock.Background>
             </TextBlock>
             <StackPanel Grid.Column="1">
-                <ComboBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14" ItemsSource="{Binding LangList}" DisplayMemberPath="LanguageName" SelectedValuePath="LanguageCode" SelectedValue="{Binding SelectLang}" ></ComboBox>
-                <TextBox  Margin="0,0,0,10" Height="30" Text="{Binding UserCode}" x:Name="loginUsercode" VerticalContentAlignment="Center" FontSize="14"></TextBox>
-                <PasswordBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14"></PasswordBox>
-                <Button  Margin="0,10,0,10"  Command="{Binding LoginCommand}" FontSize="14" VerticalContentAlignment="Center">
+                <ComboBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14" TextOptions.TextFormattingMode="Display" ItemsSource="{Binding LangList}" DisplayMemberPath="LanguageName" SelectedValuePath="LanguageCode" SelectedValue="{Binding SelectLang}" ></ComboBox>
+                <TextBox  Margin="0,0,0,10" Height="30" Text="{Binding UserCode}" x:Name="loginUsercode" VerticalContentAlignment="Center" FontSize="14" TextOptions.TextFormattingMode="Display"></TextBox>
+                <PasswordBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14" TextOptions.TextFormattingMode="Display"></PasswordBox>
+                <Button  Margin="0,10,0,10"  Command="{Binding LoginCommand}" FontSize="14" VerticalContentAlignment="Center" TextOptions.TextFormattingMode="Display">
                     <Button.CommandParameter>
                         <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
                             <MultiBinding.Bindings>

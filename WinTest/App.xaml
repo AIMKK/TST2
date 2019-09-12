@@ -6,6 +6,7 @@
              StartupUri="Views/LoginUI.xaml" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              d1p1:Ignorable="d" 
+             xmlns:winui="clr-namespace:WindowUI;assembly=WindowUI"
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <ResourceDictionary>
@@ -17,7 +18,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
                 <ResourceDictionary>
                     <WindowUI:OpenViewParamConverter x:Key="ShowTargetViewParamConverter"/>
-                    <WindowUI:ViewCommandParamConverter x:Key="ViewCommandParamConverter"/>
+                    <WindowUI:CurrentViewParamConverter x:Key="CurrentViewParamConverter"/>
                 </ResourceDictionary>
                 <!--view-->
                 <ResourceDictionary Source="ResourceDictionary/LoginResDictionary.xaml" />
@@ -26,6 +27,7 @@
                     <local:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
                 </ResourceDictionary>                
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="WindowUI:DataGrid" BasedOn="{StaticResource MahApps.Styles.DataGrid}"></Style>
             <!--<Style TargetType="Label" BasedOn="{StaticResource MetroTabItem}">
                 <Setter Property="FontFamily" Value="Segoe UI Light"/>
             </Style>

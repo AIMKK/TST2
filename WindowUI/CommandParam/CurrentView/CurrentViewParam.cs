@@ -10,7 +10,7 @@ namespace WindowUI
     /// <summary>
     /// ViewCommandParam
     /// </summary>
-    public class ViewCommandParam
+    public class CurrentViewParam
     {
         public Window CurrentView { get; set; }
 
