@@ -32,7 +32,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="42"></RowDefinition>
         </Grid.RowDefinitions>
-        <winui:DataGrid 
+        <winui:DataGrid
             x:Name="gridLocation"
             BorderBrush="#D8D8D9"
             Margin="2 5 2 0"

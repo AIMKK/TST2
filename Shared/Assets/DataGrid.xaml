@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/Button.xaml" />
-        <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/Converters.xaml" />
+        <ResourceDictionary Source="/WindowUI;component/Assets/Button.xaml" />
+        <ResourceDictionary Source="/WindowUI;component/Assets/Converters.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type DataGrid}, ResourceId=DataGridSelectAllButtonStyle}" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButtonStyle}">
@@ -130,13 +130,13 @@
                                                Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=HeadersVisibility, Converter={x:Static DataGrid.HeadersVisibilityConverter}, ConverterParameter={x:Static DataGridHeadersVisibility.Row}}"/>
                         </SelectiveScrollingGrid>
                     </Border>
-                    
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{DynamicResource DataGridCellBackgroundHover}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -184,8 +184,11 @@
 
     <Style x:Key="{x:Type DataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Background" Value="{DynamicResource DataGridHeaderBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource DataGridHeaderForeground}" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource DataGridHeaderForeground}" />        
+        <!--<Setter Property="BorderThickness" Value="0" />-->
+        <Setter Property="BorderBrush" Value="{DynamicResource DataGridGridLines}" />
+        <Setter Property="BorderThickness" Value="0,0,1,1" />
+        <!--modify-->
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
@@ -197,15 +200,16 @@
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                     <Grid>
                         <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderBrush="{TemplateBinding BorderBrush}"                               
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Padding ="{TemplateBinding Padding}"
->
-                            <Grid x:Name="containerGrid" Margin="5" >
+                                Padding ="{TemplateBinding Padding}">
+
+                            <Grid x:Name="containerGrid" Margin="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
+
                                 <ContentPresenter Grid.Column="0" 
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
@@ -213,11 +217,12 @@
                                 <Path x:Name="SortArrow"
                                       Grid.Column="1"
                                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                                      Width="8" Height="6"  Margin="5,0,5,0"
+                                      Width="8" Height="6"  Margin="2,0,2,0"
                                       Stretch="Fill" Opacity="0.5" Fill="{TemplateBinding Foreground}"
                                       RenderTransformOrigin="0.5,0.4"
                                       Visibility="Hidden"
                                       Data="M0,0 L1,0 0.5,1 z" />
+
                             </Grid>
                         </Border>
                         <Thumb x:Name="PART_LeftHeaderGripper"
@@ -310,17 +315,23 @@
     <Style x:Key="{x:Type DataGrid}" TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="{DynamicResource DataGridBackground}"/>
         <Setter Property="Foreground" Value="{DynamicResource DataGridForeground}"/>
-        <Setter Property="BorderThickness" Value="0" />
+        <!--<Setter Property="BorderThickness" Value="0" />-->
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}" />
+        <Setter Property="HeadersVisibility" Value="Column" />        
+        <!--modify-->
         <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected" />
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource DataGridGridLines}" />
         <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource DataGridGridLines}" />
         <Setter Property="DragIndicatorStyle" Value="{StaticResource ColumnFloatingHeaderStyle}" />
         <Setter Property="DropLocationIndicatorStyle" Value="{StaticResource ColumnHeaderDropSeparatorStyle}" />
-        <Setter Property="GridLinesVisibility" Value="Horizontal" />
+        <!--<Setter Property="GridLinesVisibility" Value="Horizontal" />-->
+        <Setter Property="GridLinesVisibility" Value="All" />
+        <!--modify-->
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGrid}">
@@ -393,5 +404,5 @@
         </Style.Triggers>
     </Style>
 
-    
+
 </ResourceDictionary>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FirstFloor.ModernUI.Windows
+namespace WindowUI.Windows
 {
     /// <summary>
     /// The contract for loading content.

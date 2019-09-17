@@ -72,24 +72,24 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\DesDisturb.cs" />
-    <Compile Include="Common\EmailHelper.cs" />
-    <Compile Include="Common\EncryptPassWord.cs" />
-    <Compile Include="Common\ExcelHelper.cs" />
-    <Compile Include="Common\FastMethodInvoker.cs" />
-    <Compile Include="Common\FuncComm.cs" />
-    <Compile Include="Common\HotKey.cs" />
-    <Compile Include="Common\MemoryClear.cs" />
-    <Compile Include="Common\TSHelper.cs" />
-    <Compile Include="Common\WebServiceAgent.cs" />
-    <Compile Include="CommandParam\CurrentView\CurrentViewParam.cs" />
-    <Compile Include="CommandParam\CurrentView\CurrentViewParamConverter.cs" />
-    <Compile Include="Controls\DataGrid.cs" />
-    <Compile Include="Controls\RowDoubleClickHandler.cs" />
-    <Compile Include="Controls\UIHelper.cs" />
-    <Compile Include="ExInteractivity\ExCommandParameter.cs" />
-    <Compile Include="ExInteractivity\ExInvokeCommandAction.cs" />
-    <Compile Include="LogHelper\NlogHelper.cs" />
+    <Compile Include="Extension\Common\DesDisturb.cs" />
+    <Compile Include="Extension\Common\EmailHelper.cs" />
+    <Compile Include="Extension\Common\EncryptPassWord.cs" />
+    <Compile Include="Extension\Common\ExcelHelper.cs" />
+    <Compile Include="Extension\Common\FastMethodInvoker.cs" />
+    <Compile Include="Extension\Common\FuncComm.cs" />
+    <Compile Include="Extension\Common\HotKey.cs" />
+    <Compile Include="Extension\Common\MemoryClear.cs" />
+    <Compile Include="Extension\Common\TSHelper.cs" />
+    <Compile Include="Extension\Common\WebServiceAgent.cs" />
+    <Compile Include="Extension\ViewParam\CurrentView\CurrentViewParam.cs" />
+    <Compile Include="Extension\ViewParam\CurrentView\CurrentViewParamConverter.cs" />
+    <Compile Include="Extension\ExControls\DataGrid.cs" />
+    <Compile Include="Extension\ExControls\RowDoubleClickHandler.cs" />
+    <Compile Include="Extension\ExControls\UIHelper.cs" />
+    <Compile Include="Extension\ExInteractivity\ExCommandParameter.cs" />
+    <Compile Include="Extension\ExInteractivity\ExInvokeCommandAction.cs" />
+    <Compile Include="Extension\LogHelper\NlogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -103,9 +103,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="CommandParam\OpenView\OpenViewParam.cs" />
-    <Compile Include="CommandParam\OpenView\OpenViewParamConverter.cs" />
-    <Compile Include="CommandParam\OpenView\TargetView.cs" />
+    <Compile Include="Extension\ViewParam\OpenView\OpenViewParam.cs" />
+    <Compile Include="Extension\ViewParam\OpenView\OpenViewParamConverter.cs" />
+    <Compile Include="Extension\ViewParam\OpenView\TargetView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -118,7 +118,20 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Assets\ModernWindowStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ModernDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ModernWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Dll\Microsoft.Xaml.Behaviors.dll" />
     <Content Include="Dll\NLog.dll" />

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FirstFloor.ModernUI.Windows.Controls.BBCode
+namespace WindowUI.Windows.Controls.BBCode
 {
     /// <summary>
     /// The BBCode lexer.

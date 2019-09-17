@@ -1,5 +1,5 @@
-﻿using FirstFloor.ModernUI.Windows.Media;
-using FirstFloor.ModernUI.Windows.Navigation;
+﻿using WindowUI.Windows.Media;
+using WindowUI.Windows.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace FirstFloor.ModernUI.Windows.Controls
+namespace WindowUI.Windows.Controls
 {
     /// <summary>
     /// A simple content frame implementation with navigation support.

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace FirstFloor.ModernUI.Windows.Controls.BBCode
+namespace WindowUI.Windows.Controls.BBCode
 {
     /// <summary>
     /// Represents a character buffer.

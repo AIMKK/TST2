@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstFloor.ModernUI.Win32
+namespace WindowUI.Win32
 {
     internal enum MonitorDpiType
     {

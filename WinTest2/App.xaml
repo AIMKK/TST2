@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:WinTest2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WindowUI;component/Assets/ModernUI.xaml" />
+                <ResourceDictionary Source="/WindowUI;component/Assets/ModernUI.Light.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>

@@ -1,5 +1,5 @@
-﻿using FirstFloor.ModernUI.Presentation;
-using FirstFloor.ModernUI.Windows.Navigation;
+﻿using WindowUI.Presentation;
+using WindowUI.Windows.Navigation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace FirstFloor.ModernUI.Windows.Controls
+namespace WindowUI.Windows.Controls
 {
     /// <summary>
     /// Represents a Modern UI styled window.
@@ -105,14 +105,16 @@ namespace FirstFloor.ModernUI.Windows.Controls
             base.OnApplyTemplate();
 
             // retrieve BackgroundAnimation storyboard
-            var border = GetTemplateChild("WindowBorder") as Border;
-            if (border != null) {
-                this.backgroundAnimation = border.Resources["BackgroundAnimation"] as Storyboard;
+            //var border = GetTemplateChild("WindowBorder") as Border;
+            //if (border != null)
+            //{
+            //    this.backgroundAnimation = border.Resources["BackgroundAnimation"] as Storyboard;
 
-                if (this.backgroundAnimation != null) {
-                    this.backgroundAnimation.Begin();
-                }
-            }
+            //    if (this.backgroundAnimation != null)
+            //    {
+            //        this.backgroundAnimation.Begin();
+            //    }
+            //}
         }
 
         private void OnAppearanceManagerPropertyChanged(object sender, PropertyChangedEventArgs e)

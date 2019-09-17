@@ -44,12 +44,13 @@ using System;
 //[assembly: AssemblyVersion("1.0.9.0")]
 //[assembly: AssemblyFileVersion("1.0.9.0")]
 
-//[assembly: XmlnsDefinition("http://firstfloorsoftware.com/ModernUI", "FirstFloor.ModernUI.Presentation")]
-//[assembly: XmlnsDefinition("http://firstfloorsoftware.com/ModernUI", "FirstFloor.ModernUI.Windows")]
-//[assembly: XmlnsDefinition("http://firstfloorsoftware.com/ModernUI", "FirstFloor.ModernUI.Windows.Controls")]
-//[assembly: XmlnsDefinition("http://firstfloorsoftware.com/ModernUI", "FirstFloor.ModernUI.Windows.Converters")]
-//[assembly: XmlnsDefinition("http://firstfloorsoftware.com/ModernUI", "FirstFloor.ModernUI.Windows.Navigation")]
-//[assembly: XmlnsPrefix("http://firstfloorsoftware.com/ModernUI", "mui")]
+[assembly: XmlnsDefinition("http://WindowUI.com/ModernUI", "WindowUI")]
+[assembly: XmlnsDefinition("http://WindowUI.com/ModernUI", "WindowUI.Presentation")]
+[assembly: XmlnsDefinition("http://WindowUI.com/ModernUI", "WindowUI.Windows")]
+[assembly: XmlnsDefinition("http://WindowUI.com/ModernUI", "WindowUI.Windows.Controls")]
+[assembly: XmlnsDefinition("http://WindowUI.com/ModernUI", "WindowUI.Windows.Converters")]
+[assembly: XmlnsDefinition("http://WindowUI.com/ModernUI", "WindowUI.Windows.Navigation")]
+[assembly: XmlnsPrefix("http://WindowUI.com/ModernUI", "winui")]
 
 //[assembly: ThemeInfo(
 //    ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located

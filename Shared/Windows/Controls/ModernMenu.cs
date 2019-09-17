@@ -1,5 +1,5 @@
-﻿using FirstFloor.ModernUI.Presentation;
-using FirstFloor.ModernUI.Windows.Navigation;
+﻿using WindowUI.Presentation;
+using WindowUI.Windows.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace FirstFloor.ModernUI.Windows.Controls
+namespace WindowUI.Windows.Controls
 {
     /// <summary>
     /// Represents the menu in a Modern UI styled window.

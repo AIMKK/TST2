@@ -1,0 +1,29 @@
+<Application x:Class="WindowUITest.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:WindowUITest" 
+             xmlns:winui="http://WindowUI.com/ModernUI" 
+             StartupUri="/Views/LoginUI.xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Application.Resources>
+        <ResourceDictionary>           
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WindowUI;component/Assets/ModernUI.xaml" />
+                <ResourceDictionary Source="/WindowUI;component/Assets/ModernUI.Light.xaml" />
+                <!--winui-->
+                <ResourceDictionary>
+                    <winui:OpenViewParamConverter x:Key="ShowTargetViewParamConverter" />
+                    <winui:CurrentViewParamConverter x:Key="CurrentViewParamConverter" />
+                </ResourceDictionary>
+                <!--view-->
+                <ResourceDictionary Source="ResourceDictionary/LoginResDictionary.xaml" />
+                <!--ViewModelLocator-->
+                <ResourceDictionary>
+                    <local:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+                </ResourceDictionary> 
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

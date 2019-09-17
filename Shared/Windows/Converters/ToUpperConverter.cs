@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Data;
 
-namespace FirstFloor.ModernUI.Windows.Converters
+namespace WindowUI.Windows.Converters
 {
     /// <summary>
     /// Converts string values to upper case.

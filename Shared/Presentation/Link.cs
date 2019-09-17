@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstFloor.ModernUI.Presentation
+namespace WindowUI.Presentation
 {
     /// <summary>
     /// Represents a displayable link.

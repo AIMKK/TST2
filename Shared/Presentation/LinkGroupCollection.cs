@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace FirstFloor.ModernUI.Presentation
+namespace WindowUI.Presentation
 {
     /// <summary>
     /// Represents an observable collection of link groups.

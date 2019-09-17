@@ -105,10 +105,26 @@
     <!-- text-in-datagrid styles-->
     <Style x:Key="DataGridTextStyle" TargetType="TextBlock" >
         <Setter Property="Margin" Value="2,0" />
+        
     </Style>
 
     <Style x:Key="DataGridEditingTextStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="0" />
     </Style>
+
+    <Style x:Key="DataGridTextStyleLeftCenter" TargetType="TextBlock" BasedOn="{StaticResource DataGridTextStyle}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="DataGridTextStyleRightCenter" TargetType="TextBlock" BasedOn="{StaticResource DataGridTextStyle}">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="DataGridTextStyleCenterCenter" TargetType="TextBlock" BasedOn="{StaticResource DataGridTextStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
 </ResourceDictionary>

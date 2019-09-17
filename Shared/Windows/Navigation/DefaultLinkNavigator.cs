@@ -1,6 +1,6 @@
-﻿using FirstFloor.ModernUI.Presentation;
-using FirstFloor.ModernUI.Windows.Controls;
-using FirstFloor.ModernUI.Windows.Media;
+﻿using WindowUI.Presentation;
+using WindowUI.Windows.Controls;
+using WindowUI.Windows.Media;
 using System;
 using System.Diagnostics;
 using System.Globalization;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-namespace FirstFloor.ModernUI.Windows.Navigation
+namespace WindowUI.Windows.Navigation
 {
     /// <summary>
     /// The default link navigator with support for loading frame content, external link navigation using the default browser and command execution.
@@ -92,13 +92,13 @@ namespace FirstFloor.ModernUI.Windows.Navigation
             else {
                 // perform frame navigation
                 if (source == null) {   // source required
-                    throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, ModernUI.Resources.NavigationFailedSourceNotSpecified, uri));
+                    throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, WindowUI.Resources.NavigationFailedSourceNotSpecified, uri));
                 }
 
                 // use optional parameter as navigation target to identify target frame (_self, _parent, _top or named target frame)
                 var frame = NavigationHelper.FindFrame(parameter, source);
                 if (frame == null) {
-                    throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, ModernUI.Resources.NavigationFailedFrameNotFound, uri, parameter));
+                    throw new ArgumentException(string.Format(CultureInfo.CurrentUICulture, WindowUI.Resources.NavigationFailedFrameNotFound, uri, parameter));
                 }
 
                 // delegate navigation to the frame

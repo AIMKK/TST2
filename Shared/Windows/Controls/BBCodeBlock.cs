@@ -1,6 +1,6 @@
-﻿using FirstFloor.ModernUI.Windows.Controls.BBCode;
-using FirstFloor.ModernUI.Windows.Media;
-using FirstFloor.ModernUI.Windows.Navigation;
+﻿using WindowUI.Windows.Controls.BBCode;
+using WindowUI.Windows.Media;
+using WindowUI.Windows.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,7 +15,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Navigation;
 
-namespace FirstFloor.ModernUI.Windows.Controls
+namespace WindowUI.Windows.Controls
 {
     /// <summary>
     /// A lighweight control for displaying small amounts of rich formatted BBCode content.
@@ -108,7 +108,7 @@ namespace FirstFloor.ModernUI.Windows.Controls
             }
             catch (Exception error) {
                 // display navigation failures
-                ModernDialog.ShowMessage(error.Message, ModernUI.Resources.NavigationFailed, MessageBoxButton.OK);
+                ModernDialog.ShowMessage(error.Message, WindowUI.Resources.NavigationFailed, MessageBoxButton.OK);
             }
         }
 

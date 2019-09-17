@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:winui="clr-namespace:WindowUI">
 
 
     <ResourceDictionary.MergedDictionaries>
@@ -9,7 +10,7 @@
         <ResourceDictionary Source="CheckBox.xaml" />
         <ResourceDictionary Source="ComboBox.xaml" />
         <ResourceDictionary Source="ContextMenu.xaml" />
-        <ResourceDictionary Source="DataGrid.xaml" />
+        <ResourceDictionary Source="DataGrid.xaml" />        
         <ResourceDictionary Source="DatePicker.xaml" />
         <ResourceDictionary Source="GridSplitter.xaml" />
         <ResourceDictionary Source="Hyperlink.xaml" />
@@ -18,6 +19,7 @@
         <ResourceDictionary Source="ListView.xaml" />
         <ResourceDictionary Source="ModernProgressRingStyles.xaml" />
         <ResourceDictionary Source="ModernWindowStyles.xaml" />
+        <!--<ResourceDictionary Source="/WindowUI;component/Assets/ModernWindowStyles.xaml" />-->
         <ResourceDictionary Source="MenuItem.xaml" />
         <ResourceDictionary Source="PasswordBox.xaml" />
         <ResourceDictionary Source="ProgressBar.xaml" />
@@ -64,4 +66,6 @@
     <Style x:Key="ContentRoot" TargetType="FrameworkElement">
         <Setter Property="Margin" Value="{StaticResource ContentMargin}" />
     </Style>
+    <!--winui:DataGrid-->
+    <Style TargetType="winui:DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}"></Style>
 </ResourceDictionary>

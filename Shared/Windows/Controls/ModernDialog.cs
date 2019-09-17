@@ -1,4 +1,4 @@
-﻿using FirstFloor.ModernUI.Presentation;
+﻿using WindowUI.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace FirstFloor.ModernUI.Windows.Controls
+namespace WindowUI.Windows.Controls
 {
     /// <summary>
     /// Represents a Modern UI styled dialog window.
@@ -100,7 +100,7 @@ namespace FirstFloor.ModernUI.Windows.Controls
             get
             {
                 if (this.okButton == null) {
-                    this.okButton = CreateCloseDialogButton(FirstFloor.ModernUI.Resources.Ok, true, false, MessageBoxResult.OK);
+                    this.okButton = CreateCloseDialogButton(WindowUI.Resources.Ok, true, false, MessageBoxResult.OK);
                 }
                 return this.okButton;
             }
@@ -114,7 +114,7 @@ namespace FirstFloor.ModernUI.Windows.Controls
             get
             {
                 if (this.cancelButton == null) {
-                    this.cancelButton = CreateCloseDialogButton(FirstFloor.ModernUI.Resources.Cancel, false, true, MessageBoxResult.Cancel);
+                    this.cancelButton = CreateCloseDialogButton(WindowUI.Resources.Cancel, false, true, MessageBoxResult.Cancel);
                 }
                 return this.cancelButton;
             }
@@ -128,7 +128,7 @@ namespace FirstFloor.ModernUI.Windows.Controls
             get
             {
                 if (this.yesButton == null) {
-                    this.yesButton = CreateCloseDialogButton(FirstFloor.ModernUI.Resources.Yes, true, false, MessageBoxResult.Yes);
+                    this.yesButton = CreateCloseDialogButton(WindowUI.Resources.Yes, true, false, MessageBoxResult.Yes);
                 }
                 return this.yesButton;
             }
@@ -142,7 +142,7 @@ namespace FirstFloor.ModernUI.Windows.Controls
             get
             {
                 if (this.noButton == null) {
-                    this.noButton = CreateCloseDialogButton(FirstFloor.ModernUI.Resources.No, false, true, MessageBoxResult.No);
+                    this.noButton = CreateCloseDialogButton(WindowUI.Resources.No, false, true, MessageBoxResult.No);
                 }
                 return this.noButton;
             }
@@ -156,7 +156,7 @@ namespace FirstFloor.ModernUI.Windows.Controls
             get
             {
                 if (this.closeButton == null) {
-                    this.closeButton = CreateCloseDialogButton(FirstFloor.ModernUI.Resources.Close, true, false, MessageBoxResult.None);
+                    this.closeButton = CreateCloseDialogButton(WindowUI.Resources.Close, true, false, MessageBoxResult.None);
                 }
                 return this.closeButton;
             }

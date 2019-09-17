@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using FirstFloor.ModernUI.Windows.Controls;
+using WindowUI.Windows.Controls;
 
-namespace FirstFloor.ModernUI.Windows.Navigation
+namespace WindowUI.Windows.Navigation
 {
     /// <summary>
     /// Provides data for the <see cref="IContent.OnNavigatingFrom" /> method and the <see cref="ModernFrame.Navigating"/> event.
