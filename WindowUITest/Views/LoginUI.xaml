@@ -7,11 +7,16 @@
         mc:Ignorable="d"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
         xmlns:winui="http://WindowUI.com/ModernUI"
-        Title="Login" Height="650" Width="850"        
+        Title="Login" 
+                     Height="550" Width="850" 
+                     MaxWidth="850"
+                     MaxHeight="550"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="CanResize"
+                     
         Style="{StaticResource BlankWindow}"
+                     Padding="1,10,1,1"
         FontFamily="宋体">
     
     <Window.DataContext>
@@ -25,7 +30,7 @@
             <i:InvokeCommandAction Command="{Binding FormClosed}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid Background="#2A98BD" >
+    <Grid   Height="510" VerticalAlignment="Top">
          <!--2A98BD-->
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -42,7 +47,7 @@
                         Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext}">
         </ContentControl>
         <!--left-->
-        <ContentControl Grid.Column="0" Grid.Row="1" ContentTemplate="{StaticResource loginLeft}"
+        <ContentControl Grid.Column="0" Grid.Row="1" ContentTemplate="{StaticResource loginLeft}" 
                         Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext}">
         </ContentControl>
         <!--right-->

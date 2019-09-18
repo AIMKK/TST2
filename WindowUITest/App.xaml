@@ -15,8 +15,14 @@
                 <!--winui-->
                 <ResourceDictionary>
                     <winui:OpenViewParamConverter x:Key="ShowTargetViewParamConverter" />
-                    <winui:CurrentViewParamConverter x:Key="CurrentViewParamConverter" />
+                    <winui:CurrentViewParamConverter x:Key="CurrentViewParamConverter" />                    
                 </ResourceDictionary>
+                <!--local-->
+                <ResourceDictionary>
+                    <local:LoginTypeSelectMenuConverter x:Key="LoginTypeSelectMenuConverter" />
+                    <local:loginTypeValueConverter x:Key="loginTypeValueConverter" />
+                    <local:IsCurrentLoginLocationTypeConverter x:Key="IsCurrentLoginLocationTypeConverter" />
+                </ResourceDictionary>                
                 <!--view-->
                 <ResourceDictionary Source="ResourceDictionary/LoginResDictionary.xaml" />
                 <!--ViewModelLocator-->

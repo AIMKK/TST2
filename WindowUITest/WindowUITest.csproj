@@ -77,8 +77,11 @@
     <Compile Include="Global\HttpResponseResultObject.cs" />
     <Compile Include="Global\HttpService.cs" />
     <Compile Include="Global\IRMSApiReqParam.cs" />
+    <Compile Include="Global\IsCurrentLoginLocationTypeConverter.cs" />
     <Compile Include="Global\LoginLocationTypeConverter.cs" />
     <Compile Include="Global\LoginType.cs" />
+    <Compile Include="Global\LoginTypeSelectMenuConverter.cs" />
+    <Compile Include="Global\loginTypeValueConverter.cs" />
     <Compile Include="Global\MessageTokens.cs" />
     <Compile Include="Global\MultiValueConverter.cs" />
     <Compile Include="Global\RemoteApi.cs" />

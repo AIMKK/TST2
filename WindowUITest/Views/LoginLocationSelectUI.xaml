@@ -13,6 +13,7 @@
         ResizeMode="CanResize"
         Style="{StaticResource BlankWindow}"
         Title="LocationSelect" 
+        FontFamily="宋体"
         Height="300" Width="600">
     <Window.DataContext>
         <Binding Path="LoginLocationSelectUIViewModel" Source="{StaticResource Locator}"></Binding>
@@ -33,7 +34,7 @@
         <winui:DataGrid
             x:Name="gridLocation"
            
-            Margin="2 5 2 0"
+            
               
             Grid.Row="0"
             ItemsSource ="{Binding LoctionLst}"
@@ -47,7 +48,6 @@
             SelectionMode="Single"
             SelectionUnit="FullRow"
             
-            FontFamily="宋体"
             FontSize="14"
             >           
             <i:Interaction.Triggers>
@@ -95,11 +95,12 @@
             </DataGrid.Columns>
         </winui:DataGrid>
         <Button  
-            Width="100"
+            Width="110"
             Height="30"
             HorizontalAlignment="Right"
-            Margin="0 0 2 0"
-            Grid.Row="1" FontSize="14" FontFamily="宋体" FontWeight="Normal">
+            VerticalContentAlignment="Center"
+            Margin="0 2 0 0"
+            Grid.Row="1" FontSize="14">
             选择
         </Button>
     </Grid>

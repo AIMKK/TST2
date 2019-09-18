@@ -41,8 +41,103 @@
         </Border>
     </DataTemplate>
 
+    <DataTemplate x:Key="LoginTypeSelectMenu">
+        <TextBlock  Grid.Column="1" Grid.Row="0"  FontSize="25"  TextAlignment="Center" VerticalAlignment="Center" Height="130" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding  DataContext.ShowLoginLocationSelect, RelativeSource={ RelativeSource Mode=FindAncestor, AncestorType=Grid}}">
+                            <i:InvokeCommandAction.CommandParameter>                                
+                                <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Source="{x:Type local:LoginLocationSelectUI }"/>
+                                        <!--<Binding Source="ROADSHOW" />-->
+                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}"  Path="Content.TypeValue"/>
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </i:InvokeCommandAction.CommandParameter>
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window }, Path=DataContext.LoginLocationCode}"  Foreground="#2A98BD" Width="35" Height="20"  FontSize="11" >
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter  Property="Visibility"  Value="Hidden" />
+                        <Style.Triggers>
+                            <!--<DataTrigger Binding="{Binding LoginLocationType}" Value="ROADSHOW">-->
+                            <DataTrigger  Value="True">
+                                <DataTrigger.Binding>
+                                    <MultiBinding Converter="{StaticResource IsCurrentLoginLocationTypeConverter}" Mode="OneWay">
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Path="DataContext.LoginLocationType"></Binding>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}"  Path="Content.TypeValue"/>
+                                    </MultiBinding>
+                                </DataTrigger.Binding>
+                                <Setter  Property="Visibility"  Value="Visible" >
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+               </TextBlock>
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Background" >
+                            <Setter.Value>                                
+                                <ImageBrush Stretch="UniformToFill" TileMode="None">
+                                    <ImageBrush.ImageSource>
+                                      <MultiBinding Converter="{StaticResource LoginTypeSelectMenuConverter}" Mode="OneWay">
+                                        <!--<Binding Source="ROADSHOW" />-->  
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}"  Path="Content.TypeValue"/>
+                                        <Binding Source="normal"/>
+                                      </MultiBinding>
+                                    </ImageBrush.ImageSource>       
+                                </ImageBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>                            
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter  Property="Background"  >
+                                    <Setter.Value>                                       
+                                       <ImageBrush Stretch="UniformToFill" TileMode="None">
+                                            <ImageBrush.ImageSource>
+                                              <MultiBinding Converter="{StaticResource LoginTypeSelectMenuConverter}" Mode="OneWay">
+                                                <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}"  Path="Content.TypeValue"/>
+                                                <Binding Source="MouseOver"/>
+                                              </MultiBinding>
+                                            </ImageBrush.ImageSource>      
+                                        </ImageBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            
+                            <!--<DataTrigger Binding="{Binding LoginLocationType}" Value="ROADSHOW">-->
+                            <DataTrigger Value="True">
+                                <DataTrigger.Binding>
+                                    <MultiBinding Converter="{StaticResource IsCurrentLoginLocationTypeConverter}" Mode="OneWay">
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}" Path="DataContext.LoginLocationType"></Binding>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}"  Path="Content.TypeValue"/>
+                                    </MultiBinding>
+                                </DataTrigger.Binding>
+                                <Setter  Property="Background"  >
+                                    <Setter.Value>
+                                       <ImageBrush Stretch="UniformToFill" TileMode="None">
+                                            <ImageBrush.ImageSource>
+                                              <MultiBinding Converter="{StaticResource LoginTypeSelectMenuConverter}" Mode="OneWay">
+                                               <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}"  Path="Content.TypeValue"/>
+                                                <Binding Source="selected"/>
+                                              </MultiBinding>
+                                            </ImageBrush.ImageSource>      
+                                        </ImageBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+    </DataTemplate>
+
     <DataTemplate x:Key="loginLeft">
-        <Grid VerticalAlignment="Center" Margin="10,0,0,0">
+        <Grid VerticalAlignment="Center" Margin="0,0,0,0" Background="#2A98BD" Height="450">
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"></RowDefinition>
                 <RowDefinition Height="150"></RowDefinition>
@@ -52,192 +147,38 @@
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="150"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock  Grid.Column="1" Grid.Row="0"  FontSize="25"  TextAlignment="Center" VerticalAlignment="Center" Height="130" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding  ShowLoginLocationSelect, RelativeSource={ RelativeSource Mode=FindAncestor, AncestorType=Grid}}">
-                            <i:InvokeCommandAction.CommandParameter>                                
-                                <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
-                                    <MultiBinding.Bindings>
-                                        <Binding Source="{x:Type local:LoginLocationSelectUI }"/>
-                                        <Binding Source="RoadShow" />
-                                    </MultiBinding.Bindings>
-                                </MultiBinding>
-                            </i:InvokeCommandAction.CommandParameter>
-                        </i:InvokeCommandAction>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <TextBlock Text="{Binding LoginLocationCode}"  Foreground="#2A98BD" Width="35" Height="20"  FontSize="11" >
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter  Property="Visibility"  Value="Hidden" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding LoginLocationType}" Value="ROADSHOW">
-                                    <Setter  Property="Visibility"  Value="Visible" >
-                                    </Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-               </TextBlock>
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Background" >
-                            <Setter.Value>
-                                <ImageBrush ImageSource="pack://application:,,,/Images/btn_RS_CHS.png" Stretch="UniformToFill" TileMode="None" />
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter  Property="Background"  >
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_RS_CHS_over.png" Stretch="UniformToFill" TileMode="None"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding LoginLocationType}" Value="ROADSHOW">
-                                <Setter  Property="Background"  >
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_RS_CHS_click.png" Stretch="UniformToFill" TileMode="None"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <TextBlock  Grid.Column="0" Grid.Row="1" FontSize="25"  TextAlignment="Center" VerticalAlignment="Center" Height="130">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding ShowLoginLocationSelect}">
-                            <i:InvokeCommandAction.CommandParameter>                                
-                                <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
-                                    <MultiBinding.Bindings>
-                                        <Binding Source="{x:Type local:LoginLocationSelectUI }"/>
-                                        <Binding Source="shop" />
-                                    </MultiBinding.Bindings>    
-                                </MultiBinding>
-                            </i:InvokeCommandAction.CommandParameter>
-                        </i:InvokeCommandAction>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-               <TextBlock Text="{Binding LoginLocationCode}"  Foreground="#2A98BD" Width="35" Height="20"  FontSize="11">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter  Property="Visibility"  Value="Hidden" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding LoginLocationType}" Value="SHOP">
-                                    <Setter  Property="Visibility"  Value="Visible" >
-                                    </Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-               </TextBlock>
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Background" >
-                            <Setter.Value>
-                                <ImageBrush ImageSource="pack://application:,,,/Images/btn_SHOP_CHS.png" Stretch="UniformToFill" TileMode="None" />
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>                            
-                            
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter  Property="Background"  >
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_SHOP_CHS_over.png" Stretch="UniformToFill" TileMode="None"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding LoginLocationType}" Value="SHOP">
-                                <Setter  Property="Background"  >
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_SHOP_CHS_click.png" Stretch="UniformToFill" TileMode="None"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <TextBlock  Grid.Column="1" Grid.Row="2" FontSize="25" TextAlignment="Center" VerticalAlignment="Center" Height="130">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <!--<i:InvokeCommandAction Command="{Binding SelectLocation}"  CommandParameter="{x:Type local:LoginLocationSelectUI }"/>-->     
-                        <i:InvokeCommandAction Command="{Binding ShowLoginLocationSelect}">
-                            <i:InvokeCommandAction.CommandParameter>                                
-                                <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
-                                    <MultiBinding.Bindings>
-                                        <Binding Source="{x:Type local:LoginLocationSelectUI }"/>
-                                        <Binding Source="office"/>
-                                    </MultiBinding.Bindings>    
-                                </MultiBinding>
-                            </i:InvokeCommandAction.CommandParameter>
-                        </i:InvokeCommandAction>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                 <TextBlock Text="{Binding LoginLocationCode}" Foreground="#2A98BD" Width="40" Height="20" FontSize="11">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter  Property="Visibility"  Value="Hidden" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding LoginLocationType}" Value="OFFICE">
-                                    <Setter  Property="Visibility"  Value="Visible" >
-                                    </Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-               </TextBlock>
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Background" >
-                            <Setter.Value>
-                                <ImageBrush ImageSource="pack://application:,,,/Images/btn_WH_CHS.png" Stretch="UniformToFill" TileMode="None" />
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter  Property="Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_WH_CHS_over.png" Stretch="UniformToFill" TileMode="None"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding LoginLocationType}" Value="OFFICE">
-                                <Setter  Property="Background"  >
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="pack://application:,,,/Images/btn_WH_CHS_click.png" Stretch="UniformToFill" TileMode="None"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+            <!--RoadShow-->
+            <ContentControl  Grid.Column="1" Grid.Row="0"  ContentTemplate="{StaticResource LoginTypeSelectMenu}"
+                        Content="{Binding Source=ROADSHOW,Converter={StaticResource loginTypeValueConverter}}">
+            </ContentControl>
+            <!--shop-->
+            <ContentControl Grid.Column="0" Grid.Row="1" ContentTemplate="{StaticResource LoginTypeSelectMenu}"
+                        Content="{Binding Source=SHOP,Converter={StaticResource loginTypeValueConverter}}">
+            </ContentControl>
+            <!--office-->
+            <ContentControl Grid.Column="1" Grid.Row="2"  ContentTemplate="{StaticResource LoginTypeSelectMenu}"
+                        Content="{Binding Source=OFFICE,Converter={StaticResource loginTypeValueConverter}}">
+            </ContentControl>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="loginRight">
-        <Grid  VerticalAlignment="Center" Margin="0,0,20,0">
+        <Grid  VerticalAlignment="Center" Margin="0,0,0,0" Background="#2A98BD" Height="450">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="180"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock  Grid.Column="0"  FontSize="25" 
+            <TextBlock  Grid.Column="0"  FontSize="25"  
                         TextAlignment="Center" VerticalAlignment="Center"  Height="130" Width="150">
                 <TextBlock.Background>
                     <ImageBrush ImageSource="pack://application:,,,/Images/login_logo.jpg" Stretch="UniformToFill" TileMode="None" />
                 </TextBlock.Background>
             </TextBlock>
-            <StackPanel Grid.Column="1">
-                <ComboBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14" TextOptions.TextFormattingMode="Display" ItemsSource="{Binding LangList}" DisplayMemberPath="LanguageName" SelectedValuePath="LanguageCode" SelectedValue="{Binding SelectLang}" ></ComboBox>
-                <TextBox  Margin="0,0,0,10" Height="30" Text="{Binding UserCode}" x:Name="loginUsercode" VerticalContentAlignment="Center" FontSize="14" TextOptions.TextFormattingMode="Display"></TextBox>
-                <PasswordBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14" TextOptions.TextFormattingMode="Display"></PasswordBox>
-                <Button  Margin="0,10,0,10"  Command="{Binding LoginCommand}" FontSize="14" VerticalContentAlignment="Center" TextOptions.TextFormattingMode="Display">
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,15,0">
+                <ComboBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14"  ItemsSource="{Binding LangList}" DisplayMemberPath="LanguageName" SelectedValuePath="LanguageCode" SelectedValue="{Binding SelectLang}" ></ComboBox>
+                <TextBox  Margin="0,0,0,10" Height="30" Text="{Binding UserCode}" x:Name="loginUsercode" VerticalContentAlignment="Center" FontSize="14" ></TextBox>
+                <PasswordBox  Margin="0,0,0,10" Height="30" VerticalContentAlignment="Center" FontSize="14" ></PasswordBox>
+                <Button  Margin="0,10,0,10"  Command="{Binding LoginCommand}" FontSize="14" VerticalContentAlignment="Center" Height="30">
                     <Button.CommandParameter>
                         <MultiBinding Converter="{StaticResource ShowTargetViewParamConverter}">
                             <MultiBinding.Bindings>
