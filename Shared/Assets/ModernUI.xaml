@@ -44,6 +44,9 @@
     <sys:Double x:Key="FixedFontSize">13.333</sys:Double>
 
     <sys:Double x:Key="SmallFontSize">11</sys:Double>
+    
+    <!--add 宋体 font-->
+    <FontFamily x:Key="SongFontFamily">宋体</FontFamily>
 
     <!-- layout margins -->
     <Thickness x:Key="RootMargin">-42,-8,-16,-16</Thickness>

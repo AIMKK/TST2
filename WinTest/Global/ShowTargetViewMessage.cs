@@ -23,7 +23,7 @@ namespace WinTest
         /// <param name="targetViewModelInitPropName"></param>
         /// <param name="viewParam"></param>
         /// <returns></returns>
-        public static ShowTargetViewMessage CreateInstance(OpenViewParam viewParam)
+        public static ShowTargetViewMessage CreateInstance(OpenNewViewParam viewParam)
         {
             return CreateInstance("", viewParam);
         }
@@ -34,7 +34,7 @@ namespace WinTest
         /// <param name="viewInitValueReceiveProp"></param>
         /// <param name="viewParam"></param>
         /// <returns></returns>
-        public static ShowTargetViewMessage CreateInstance(string viewInitValueReceiveProp, OpenViewParam viewParam)
+        public static ShowTargetViewMessage CreateInstance(string viewInitValueReceiveProp, OpenNewViewParam viewParam)
         {
             ShowTargetViewMessage param = new ShowTargetViewMessage();
             try
@@ -46,7 +46,7 @@ namespace WinTest
                 //
                 param.TargetViewType = viewParam.NewViewType as Type;
                 param.ReceiveViewInitValueProp = viewInitValueReceiveProp;
-                param.ViewInitValue = viewParam.NewViewInitValue;
+                param.ViewInitValue = viewParam.ParamValueFromCurrentView;
             }
             catch (Exception ex)
             {

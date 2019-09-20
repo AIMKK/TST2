@@ -80,7 +80,7 @@ namespace WindowUI.Windows.Controls
 #endif
             // associate navigate link command with this instance
             this.CommandBindings.Add(new CommandBinding(LinkCommands.NavigateLink, OnNavigateLink, OnCanNavigateLink));
-
+            
             // listen for theme changes
             AppearanceManager.Current.PropertyChanged += OnAppearanceManagerPropertyChanged;
         }

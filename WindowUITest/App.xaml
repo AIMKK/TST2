@@ -14,7 +14,7 @@
                 <ResourceDictionary Source="/WindowUI;component/Assets/ModernUI.Light.xaml" />
                 <!--winui-->
                 <ResourceDictionary>
-                    <winui:OpenViewParamConverter x:Key="ShowTargetViewParamConverter" />
+                    <winui:OpenNewViewParamConverter x:Key="OpenNewViewParamConverter" />
                     <winui:CurrentViewParamConverter x:Key="CurrentViewParamConverter" />                    
                 </ResourceDictionary>
                 <!--local-->
@@ -22,6 +22,7 @@
                     <local:LoginTypeSelectMenuConverter x:Key="LoginTypeSelectMenuConverter" />
                     <local:loginTypeValueConverter x:Key="loginTypeValueConverter" />
                     <local:IsCurrentLoginLocationTypeConverter x:Key="IsCurrentLoginLocationTypeConverter" />
+                    <local:PasswordConverter x:Key="PasswordConverter" /> 
                 </ResourceDictionary>                
                 <!--view-->
                 <ResourceDictionary Source="ResourceDictionary/LoginResDictionary.xaml" />
@@ -29,7 +30,12 @@
                 <ResourceDictionary>
                     <local:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
                 </ResourceDictionary> 
-            </ResourceDictionary.MergedDictionaries>            
+            </ResourceDictionary.MergedDictionaries>
+            <!--winui:ModernDialog-->
+            <Style TargetType="{x:Type winui:ModernDialog}" BasedOn="{StaticResource {x:Type winui:ModernDialog}}">
+                <Setter Property="FontFamily" Value="{StaticResource SongFontFamily}"/>
+                <Setter Property="FontSize" Value="13"/>
+            </Style>            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

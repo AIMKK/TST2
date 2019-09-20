@@ -3,33 +3,35 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WindowUI;
+using WindowUI.Windows.Controls;
 
 namespace WindowUITest
 {
     public class LoginUIViewModel : ViewModelBase
     {
-        public RelayCommand<OpenViewParam> LoginCommand { get; set; }
+        public RelayCommand<OpenNewViewParam> LoginCommand { get; set; }
 
-        public RelayCommand<Window> FormLoaded { get; set; }
+        public RelayCommand<Window> FormLoadedCommand { get; set; }
 
-        public RelayCommand<Window> FormClosed { get; set; }
+        public RelayCommand<Window> FormClosedCommand { get; set; }
 
-        public RelayCommand<OpenViewParam> ShowLoginLocationSelect { get; set; }
+        public RelayCommand<OpenNewViewParam> ShowLoginLocationSelect { get; set; }
 
         public LoginUIViewModel()
         {
-            LoginCommand = new RelayCommand<OpenViewParam>(loginBtnClick);
+            LoginCommand = new RelayCommand<OpenNewViewParam>(loginBtnClick);
             //
-            FormLoaded = new RelayCommand<Window>(formLoaded);
-            FormClosed = new RelayCommand<Window>(formClosed);
+            FormLoadedCommand = new RelayCommand<Window>(formLoaded);
+            FormClosedCommand = new RelayCommand<Window>(formClosed);
             //
-            ShowLoginLocationSelect = new RelayCommand<OpenViewParam>(showLoginLocationSelect);
+            ShowLoginLocationSelect = new RelayCommand<OpenNewViewParam>(showLoginLocationSelect);
             //
             iniData();
         }
@@ -125,7 +127,7 @@ namespace WindowUITest
             }
         }
 
-        private string userCode = "USER";
+        private string userCode = "";
         public string UserCode
         {
             get { return userCode; }
@@ -151,7 +153,7 @@ namespace WindowUITest
         /// loginBtnClick
         /// </summary>
         /// <param name="viewParam"></param>
-        private void loginBtnClick(OpenViewParam viewParam)
+        private void loginBtnClick(OpenNewViewParam viewParam)
         {
             if (viewParam==null)
             {
@@ -160,8 +162,40 @@ namespace WindowUITest
             //
             try
             {
-                TargetView targetView = new TargetView(viewParam.NewViewType);
-                targetView.Show();
+                //var v=(System.Security.SecureString)(viewParam.NewViewInitValue);
+                //IntPtr p = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(v);
+
+                //// 使用.NET内部算法把IntPtr指向处的字符集合转换成字符串  
+                //string password = System.Runtime.InteropServices.Marshal.PtrToStringBSTR(p);
+
+                string password = "";
+                System.Windows.Controls.PasswordBox pwdBox = viewParam.ParamValueFromCurrentView  as System.Windows.Controls.PasswordBox;
+                if (pwdBox!=null)
+                {                    
+                    password = pwdBox.Password;
+                }
+                //
+                if ((this.userCode??"").Trim().Length==0)
+                {
+                    ModernDialog.ShowMessage("用户名不能空白！", "notice", System.Windows.MessageBoxButton.OK, viewParam.CurrentView);
+                    return;
+                }
+                //
+                if ((this.LoginLocationCode ?? "").Trim().Length == 0|| (this.LoginLocationType ?? "").Trim().Length == 0)
+                {
+                    ModernDialog.ShowMessage("请选择登录店铺位置！", "notice", System.Windows.MessageBoxButton.OK, viewParam.CurrentView);
+                    return;
+                }
+                //check user
+                UserObject userobj =RemoteApi.UserLogin(this.userCode, password);
+                if (userobj == null||!string.Equals(userobj.UserCode,this.userCode,StringComparison.OrdinalIgnoreCase))//说明不成功
+                {
+                    ModernDialog.ShowMessage("登录失败，请检查用户名和密码是否正确！", "notice", System.Windows.MessageBoxButton.OK, viewParam.CurrentView);
+                    return;
+                }
+                //说明成功，记录数据
+                OpenNewView newView = new OpenNewView(viewParam.NewViewType);
+                newView.Show();
             }
             catch (Exception ex)
             {
@@ -171,7 +205,7 @@ namespace WindowUITest
             //
             if (viewParam.CurrentView!=null)
             {
-                viewParam.CurrentView.Close();
+                //viewParam.CurrentView.Close();
             }
         }
 
@@ -179,25 +213,25 @@ namespace WindowUITest
         /// showLoginLocationSelect
         /// </summary>
         /// <param name="viewParam"></param>
-        private void showLoginLocationSelect(OpenViewParam viewParam)
+        private void showLoginLocationSelect(OpenNewViewParam viewParam)
         {
             if (viewParam == null)
             {
                 return;
             }
             //
-            TargetView targetView = new TargetView(viewParam.NewViewType);
+            OpenNewView targetView = new OpenNewView(viewParam.NewViewType);
             //
             LoginLocationSelectUIViewModel loginLocSelectVM= targetView.GetViewDataContext<LoginLocationSelectUIViewModel>();
             if (loginLocSelectVM!=null)
             {
-                loginLocSelectVM.LoginType = viewParam.NewViewInitValue as string;
+                loginLocSelectVM.LoginType = viewParam.ParamValueFromCurrentView as string;
             }
             //
-            if (targetView.ShowDialog()==true)
+            if (targetView.ShowDialog() == true)
             {
                 //
-                LoginLocationCode=loginLocSelectVM.SelectedUserAccess.LocationCode;
+                LoginLocationCode = loginLocSelectVM.SelectedUserAccess.LocationCode;
                 //
                 LoginLocationType = loginLocSelectVM.SelectedUserAccess.ShopNature;
                 //
@@ -211,9 +245,10 @@ namespace WindowUITest
         /// <param name="win"></param>
         private void formLoaded(Window win)
         {
-            if (win!=null)
+            if (win != null)
             {
                 //Messenger.Default.Register<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
+                
             }
         }
 
@@ -226,6 +261,7 @@ namespace WindowUITest
             if (win != null)
             {
                 //Messenger.Default.Unregister<TargetViewCreateMessage>(win, MessageTokens.ShowLoginLocationSelectUI, showTargetView);
+                win.Close();
             }
         }
         

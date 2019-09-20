@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowUI;
+using WindowUI.Windows.Controls;
 
 namespace WindowUITest
 {
@@ -117,7 +118,8 @@ namespace WindowUITest
                     SelectedUserAccess = userAccess;
                 }
                 else
-                {
+                {                   
+                    ModernDialog.ShowMessage("请选择所需要的行！", "message",System.Windows.MessageBoxButton.OK, viewCmdParam.CurrentView);
                     return;
                 }
                 //

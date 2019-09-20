@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WindowUITest"
         mc:Ignorable="d"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:winui="http://WindowUI.com/ModernUI"
         Title="Login" 
                      Height="550" Width="850" 
@@ -23,12 +24,19 @@
         <Binding Path="LoginUIViewModel" Source="{StaticResource Locator}"></Binding>
     </Window.DataContext>
     <i:Interaction.Triggers>
+        <!--Loaded-->
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding FormLoaded}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+            <i:InvokeCommandAction Command="{Binding FormLoadedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
         </i:EventTrigger>
+        <!--Closed-->
         <i:EventTrigger EventName="Closed">
-            <i:InvokeCommandAction Command="{Binding FormClosed}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+            <i:InvokeCommandAction Command="{Binding FormClosedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
         </i:EventTrigger>
+        <!--Esc-->
+        <ei:KeyTrigger FiredOn="KeyDown" Key="Esc">
+            <i:InvokeCommandAction Command="{Binding FormClosedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </ei:KeyTrigger>
+        
     </i:Interaction.Triggers>
     <Grid   Height="510" VerticalAlignment="Top">
          <!--2A98BD-->

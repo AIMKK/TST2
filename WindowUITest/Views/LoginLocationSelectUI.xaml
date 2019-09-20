@@ -95,13 +95,23 @@
             </DataGrid.Columns>
         </winui:DataGrid>
         <Button  
+            Grid.Row="1" 
+            Content="选择"
             Width="110"
             Height="30"
             HorizontalAlignment="Right"
             VerticalContentAlignment="Center"
             Margin="0 2 0 0"
-            Grid.Row="1" FontSize="14">
-            选择
+            FontSize="14"
+            Command="{Binding Path=DataContext.GridItemSelectCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource CurrentViewParamConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding ElementName="LoginLocSelectUI"/>
+                        <Binding ElementName="gridLocation" Path="SelectedItem" />
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </Button.CommandParameter>            
         </Button>
     </Grid>
 </winui:ModernWindow>

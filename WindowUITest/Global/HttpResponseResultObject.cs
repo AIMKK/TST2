@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WindowUITest
 {
-    public class HttpResponseResultObject
+    public class HttpResponseResultObject<T>
     {
         public string Code { get; set; }
-
-        public Newtonsoft.Json.Linq.JArray Data { get; set; }
+        //Newtonsoft.Json.Linq.JArray
+        public T Data { get; set; }
     }
 }

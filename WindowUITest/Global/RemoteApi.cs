@@ -24,21 +24,22 @@ namespace WindowUITest
             List<UserAccessObject> result = null;
             string responseResult = "";
             UserAccessObject userAccessObj = null;
-            HttpResponseResultObject responseObj = null;
+            HttpResponseResultObject<object> responseObj = null;
             try
             {
                 result = new List<UserAccessObject>();
-              
+
                 IRMSApiReqParam apiParam = CreateIRMSApiReqParam.CreateGetAccessShopParam(loginIPAddress, loginShopNature, languageCode);
                 if (apiParam != null)
                 {
                     responseResult = HttpService.Post(apiParam.JsonData, apiParam.Path, 6000);
-                    responseObj = JsonConvert.DeserializeObject<HttpResponseResultObject>(responseResult);
+                    responseObj = JsonConvert.DeserializeObject<HttpResponseResultObject<object>>(responseResult);
                     if (responseObj != null && responseObj.Code == SuccessCode)
                     {
-                        if (responseObj.Data != null && responseObj.Data.Count > 0)
+                        Newtonsoft.Json.Linq.JArray arrData = responseObj.Data  as Newtonsoft.Json.Linq.JArray;
+                        if (arrData != null && arrData.Count > 0)
                         {
-                            foreach (Newtonsoft.Json.Linq.JObject jobj in responseObj.Data)
+                            foreach (Newtonsoft.Json.Linq.JObject jobj in arrData)
                             {
                                 userAccessObj = jobj.ToObject<UserAccessObject>();
                                 if (userAccessObj != null)
@@ -53,8 +54,46 @@ namespace WindowUITest
             catch (Exception ex)
             {
                 result = null;
+                WindowUI.NlogHelper.LogToFile(ex.ToString());
             }
             return result;
+        }
+
+        /// <summary>
+        /// UserLogin
+        /// </summary>
+        /// <param name="usercode"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        public static UserObject UserLogin(string usercode,string pwd)
+        {
+            UserObject userObj = null;
+            string responseResult = "";
+            HttpResponseResultObject<object> responseObj = null;            
+            try
+            {
+                IRMSApiReqParam apiParam = CreateIRMSApiReqParam.CreateUserLoginParam(usercode, pwd);
+                if (apiParam != null)
+                {
+                    responseResult = HttpService.Post(apiParam.JsonData, apiParam.Path, 6000);
+                    responseObj = JsonConvert.DeserializeObject<HttpResponseResultObject<object>>(responseResult);
+                    if (responseObj != null && responseObj.Code == SuccessCode)
+                    {
+                        Newtonsoft.Json.Linq.JObject jObj=responseObj.Data as Newtonsoft.Json.Linq.JObject;
+                        if (jObj != null)
+                        {
+                            userObj = jObj.ToObject<UserObject>();                            
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                userObj = null;
+                WindowUI.NlogHelper.LogToFile(ex.ToString());
+            }
+            //
+            return userObj;
         }
     }
 }

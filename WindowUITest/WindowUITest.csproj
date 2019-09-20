@@ -47,6 +47,9 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftExpressionInteractions.3.0.40218.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -73,6 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataModel\UserObject.cs" />
     <Compile Include="Global\Global.cs" />
     <Compile Include="Global\HttpResponseResultObject.cs" />
     <Compile Include="Global\HttpService.cs" />
@@ -84,6 +88,7 @@
     <Compile Include="Global\loginTypeValueConverter.cs" />
     <Compile Include="Global\MessageTokens.cs" />
     <Compile Include="Global\MultiValueConverter.cs" />
+    <Compile Include="Global\PasswordConverter.cs" />
     <Compile Include="Global\RemoteApi.cs" />
     <Compile Include="Global\ShowTargetViewMessage.cs" />
     <Compile Include="ViewModel\LoginLocationSelectUIViewModel.cs" />

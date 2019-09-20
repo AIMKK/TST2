@@ -14,22 +14,22 @@ namespace WinTest
 {
     public class LoginUIViewModel : ViewModelBase
     {
-        public RelayCommand<OpenViewParam> LoginCommand { get; set; }
+        public RelayCommand<OpenNewViewParam> LoginCommand { get; set; }
 
         public RelayCommand<Window> FormLoaded { get; set; }
 
         public RelayCommand<Window> FormClosed { get; set; }
 
-        public RelayCommand<OpenViewParam> ShowLoginLocationSelect { get; set; }
+        public RelayCommand<OpenNewViewParam> ShowLoginLocationSelect { get; set; }
 
         public LoginUIViewModel()
         {
-            LoginCommand = new RelayCommand<OpenViewParam>(loginBtnClick);
+            LoginCommand = new RelayCommand<OpenNewViewParam>(loginBtnClick);
             //
             FormLoaded = new RelayCommand<Window>(formLoaded);
             FormClosed = new RelayCommand<Window>(formClosed);
             //
-            ShowLoginLocationSelect = new RelayCommand<OpenViewParam>(showLoginLocationSelect);
+            ShowLoginLocationSelect = new RelayCommand<OpenNewViewParam>(showLoginLocationSelect);
             //
             iniData();
         }
@@ -151,7 +151,7 @@ namespace WinTest
         /// loginBtnClick
         /// </summary>
         /// <param name="viewParam"></param>
-        private void loginBtnClick(OpenViewParam viewParam)
+        private void loginBtnClick(OpenNewViewParam viewParam)
         {
             if (viewParam==null)
             {
@@ -160,7 +160,7 @@ namespace WinTest
             //
             try
             {
-                TargetView targetView = new TargetView(viewParam.NewViewType);
+                OpenNewView targetView = new OpenNewView(viewParam.NewViewType);
                 targetView.Show();
             }
             catch (Exception ex)
@@ -179,19 +179,19 @@ namespace WinTest
         /// showLoginLocationSelect
         /// </summary>
         /// <param name="viewParam"></param>
-        private void showLoginLocationSelect(OpenViewParam viewParam)
+        private void showLoginLocationSelect(OpenNewViewParam viewParam)
         {
             if (viewParam == null)
             {
                 return;
             }
             //
-            TargetView targetView = new TargetView(viewParam.NewViewType);
+            OpenNewView targetView = new OpenNewView(viewParam.NewViewType);
             //
             LoginLocationSelectUIViewModel loginLocSelectVM= targetView.GetViewDataContext<LoginLocationSelectUIViewModel>();
             if (loginLocSelectVM!=null)
             {
-                loginLocSelectVM.LoginType = viewParam.NewViewInitValue as string;
+                loginLocSelectVM.LoginType = viewParam.ParamValueFromCurrentView as string;
             }
             //
             if (targetView.ShowDialog()==true)

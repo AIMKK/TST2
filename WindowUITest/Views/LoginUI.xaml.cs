@@ -25,7 +25,7 @@ namespace WindowUITest
         public LoginUI()
         {
             InitializeComponent();
-            
         }
+
     }
 }
