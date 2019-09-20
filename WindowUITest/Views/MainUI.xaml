@@ -7,10 +7,30 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         xmlns:winui="http://WindowUI.com/ModernUI"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         WindowStyle="None"
         Style="{StaticResource BlankWindow}"
         Title="MainUI" Height="711" Width="995">
+    <Window.DataContext>
+        <local:MainUIViewModel/>
+    </Window.DataContext>
+    <i:Interaction.Triggers>
+        <!--Loaded-->
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FormLoadedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </i:EventTrigger>
+        <!--Closed-->
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding FormClosedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </i:EventTrigger>
+        <!--Esc-->
+        <ei:KeyTrigger FiredOn="KeyDown" Key="Esc">
+            <i:InvokeCommandAction Command="{Binding FormClosedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </ei:KeyTrigger>
+
+    </i:Interaction.Triggers>
     <Grid>
-        
+    
     </Grid>
 </winui:ModernWindow>
