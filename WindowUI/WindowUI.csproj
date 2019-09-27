@@ -40,6 +40,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\NLog.dll</HintPath>
@@ -54,11 +58,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\SqliteUnBundle\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dll\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,18 +80,16 @@
     <Compile Include="Extension\Common\ExcelHelper.cs" />
     <Compile Include="Extension\Common\FastMethodInvoker.cs" />
     <Compile Include="Extension\Common\FuncComm.cs" />
-    <Compile Include="Extension\HotKey\HotKeyHelper.cs" />
     <Compile Include="Extension\Common\MemoryClear.cs" />
     <Compile Include="Extension\Common\TSHelper.cs" />
     <Compile Include="Extension\Common\WebServiceAgent.cs" />
-    <Compile Include="Extension\ViewParam\CurrentView\CurrentViewParam.cs" />
-    <Compile Include="Extension\ViewParam\CurrentView\CurrentViewParamConverter.cs" />
+    <Compile Include="Extension\ViewCommandParam\CurrentView\CurrentViewParam.cs" />
+    <Compile Include="Extension\ViewCommandParam\CurrentView\CurrentViewParamConverter.cs" />
     <Compile Include="Extension\ExControls\DataGrid.cs" />
     <Compile Include="Extension\ExControls\RowDoubleClickHandler.cs" />
     <Compile Include="Extension\ExControls\UIHelper.cs" />
-    <Compile Include="Extension\ExInteractivity\ExCommandParameter.cs" />
-    <Compile Include="Extension\ExInteractivity\ExInvokeCommandAction.cs" />
     <Compile Include="Extension\LogHelper\NlogHelper.cs" />
+    <Compile Include="Controls\WindowUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -103,13 +103,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Extension\ViewParam\OpenView\OpenNewViewParam.cs" />
-    <Compile Include="Extension\ViewParam\OpenView\OpenNewViewParamConverter.cs" />
-    <Compile Include="Extension\ViewParam\OpenView\OpenNewView.cs" />
+    <Compile Include="Extension\ViewCommandParam\OpenView\OpenNewViewParam.cs" />
+    <Compile Include="Extension\ViewCommandParam\OpenView\OpenNewViewParamConverter.cs" />
+    <Compile Include="Extension\ViewCommandParam\OpenView\OpenNewView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -119,28 +120,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Assets\ModernWindowStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ModernDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\ModernWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Dll\Microsoft.Expression.Interactions.dll" />
     <Content Include="Dll\Microsoft.Xaml.Behaviors.dll" />
     <Content Include="Dll\NLog.dll" />
     <Content Include="Dll\RabbitMQ.Client.dll" />
     <Content Include="Dll\SqliteUnBundle\System.Data.SQLite.dll" />
-    <Content Include="Dll\System.Windows.Interactivity.dll" />
+    <Resource Include="Other\formborder.txt" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Folder Include="Assets\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Styles\Themes\" />
+    <Folder Include="Themes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

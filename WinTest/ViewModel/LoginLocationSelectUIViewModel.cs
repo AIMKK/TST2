@@ -19,7 +19,7 @@ namespace WinTest
 
         public RelayCommand<CurrentViewParam> GridItemSelectCommand { get; set; }
 
-        public RelayCommand<ExCommandParameter> GridItemSelectCommand2 { get; set; }
+        public RelayCommand<object> GridItemSelectCommand2 { get; set; }
         
         public string LoginType { get; set; }
 
@@ -38,7 +38,7 @@ namespace WinTest
             FormLoaded = new RelayCommand<object>(formLoaded);
             //
             GridItemSelectCommand = new RelayCommand<CurrentViewParam>(gridItemSelectCommand);
-            GridItemSelectCommand2 = new RelayCommand<ExCommandParameter>(gridItemSelectCommand2);
+            GridItemSelectCommand2 = new RelayCommand<object>(gridItemSelectCommand2);
             //
             LoginType = Global.CurrentLoginType;
         }
@@ -93,12 +93,12 @@ namespace WinTest
         /// gridDoubleClickCommand
         /// </summary>
         /// <param name="selectedItem"></param>
-        private void gridItemSelectCommand2(ExCommandParameter viewCmdParam)
+        private void gridItemSelectCommand2(object viewCmdParam)
         {
             if (viewCmdParam != null)
             {
-                System.Windows.Input.MouseButtonEventArgs args = viewCmdParam.EventArgs as System.Windows.Input.MouseButtonEventArgs;
-                var v= args.OriginalSource;
+                //System.Windows.Input.MouseButtonEventArgs args = viewCmdParam.EventArgs as System.Windows.Input.MouseButtonEventArgs;
+                //var v= args.OriginalSource;
                
             }
         }

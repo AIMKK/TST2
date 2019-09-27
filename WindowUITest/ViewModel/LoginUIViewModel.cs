@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using FirstFloor.ModernUI.Windows.Controls;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WindowUI;
-using WindowUI.Windows.Controls;
+
 
 namespace WindowUITest
 {
@@ -228,7 +229,8 @@ namespace WindowUITest
                 loginLocSelectVM.LoginType = viewParam.ParamValueFromCurrentView as string;
             }
             //
-            if (targetView.ShowDialog() == true)
+            
+            if (targetView.ShowDialog(viewParam.CurrentView) == true)
             {
                 //
                 LoginLocationCode = loginLocSelectVM.SelectedUserAccess.LocationCode;

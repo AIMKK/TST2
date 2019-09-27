@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WindowUITest"
-                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions">
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
     <Style x:Key="loginText" TargetType="{x:Type TextBox}">
         <!--<Setter Property="FontSize" Value="16" />-->
         <Setter Property="Height" Value="34"/>
@@ -52,7 +51,8 @@
                                     <MultiBinding.Bindings>
                                         <Binding Source="{x:Type local:LoginLocationSelectUI }"/>
                                         <!--<Binding Source="ROADSHOW" />-->
-                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}"  Path="Content.TypeValue"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}"  Path="Content.TypeValue"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Window}"  />
                                     </MultiBinding.Bindings>
                                 </MultiBinding>
                             </i:InvokeCommandAction.CommandParameter>
@@ -185,14 +185,14 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>                
+                </Grid.RowDefinitions>
                 <ComboBox Grid.Column="1"  Grid.Row="0" Margin="0,5" Height="30" VerticalContentAlignment="Center" FontSize="14"  ItemsSource="{Binding LangList}" DisplayMemberPath="LanguageName" SelectedValuePath="LanguageCode" SelectedValue="{Binding SelectLang}" ></ComboBox>
                 <!--<TextBlock Grid.Column="0" Grid.Row="1" Text="USER:" Margin="0,0,3,0" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" TextAlignment="Right" ></TextBlock>-->
                 <TextBox Grid.Column="1" Grid.Row="1" Margin="0,5" Height="30"  Text="{Binding UserCode,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#008080"  ></TextBox>
                 <!--<TextBlock Grid.Column="0" Grid.Row="2" Text="PWD:" Margin="0,0,3,0" VerticalAlignment="Center"  FontSize="14" FontWeight="Bold"  TextAlignment="Right"  ></TextBlock>-->
                 <PasswordBox  Grid.Column="1" Grid.Row="2" Margin="0,5" Height="30"  x:Name="txtPwd"  VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold"   Foreground="#008080" ></PasswordBox>
                 <Button  Grid.Column="1" Grid.Row="3" Margin="0,5"  Height="30" VerticalContentAlignment="Center"  Command="{Binding LoginCommand}"   FontSize="14"  Content="登陆">
-                    
+
                     <Button.CommandParameter>
                         <MultiBinding  Converter="{StaticResource OpenNewViewParamConverter}">
                             <MultiBinding.Bindings>
@@ -204,7 +204,7 @@
                     </Button.CommandParameter>
                     <i:Interaction.Triggers>
                         <!--Return-->
-                        <ei:KeyTrigger FiredOn="KeyDown" Key="Return">
+                        <i:KeyTrigger FiredOn="KeyDown" Key="Return">
                             <i:InvokeCommandAction Command="{Binding LoginCommand}" >
                                 <i:InvokeCommandAction.CommandParameter>
                                     <MultiBinding Converter="{StaticResource OpenNewViewParamConverter}">
@@ -216,10 +216,10 @@
                                     </MultiBinding>
                                 </i:InvokeCommandAction.CommandParameter>
                             </i:InvokeCommandAction>
-                        </ei:KeyTrigger>
+                        </i:KeyTrigger>
                     </i:Interaction.Triggers>
                 </Button>
-            </Grid>            
+            </Grid>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

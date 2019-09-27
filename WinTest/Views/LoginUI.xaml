@@ -6,21 +6,25 @@
         xmlns:local="clr-namespace:WinTest"
         mc:Ignorable="d"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+	   
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         Title="Login" Height="650" Width="850"        
         WindowStartupLocation="CenterScreen"
+                       
         GlowBrush="#366CB3"                    
-        BorderThickness="1" 
+        BorderThickness="1"                       
         ResizeMode="CanMinimize"
         WindowTransitionsEnabled="False"
         FontFamily="宋体"
-        
+        xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+        Dialog:DialogParticipation.Register="{Binding}"
         TextOptions.TextFormattingMode="Display">
     
     <Window.DataContext>
         <Binding Path="LoginUIViewModel" Source="{StaticResource Locator}"></Binding>
     </Window.DataContext>
+   
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding FormLoaded}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>

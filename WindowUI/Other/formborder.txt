@@ -1,0 +1,7 @@
+﻿WPF中不规则窗体与WindowsFormsHost控件的兼容问题完美解决方案
+https://blog.csdn.net/wziyx513225244/article/details/6988494
+WPF 调用API修改窗体风格实现真正的无边框窗体
+https://blog.csdn.net/detecyang/article/details/7946237
+
+Custom Window Chrome in WPF
+https://blogs.msdn.microsoft.com/wpfsdk/2008/09/08/custom-window-chrome-in-wpf/

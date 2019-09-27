@@ -96,14 +96,13 @@ namespace WindowUI.Windows.Controls
             // detach event handler
             AppearanceManager.Current.PropertyChanged -= OnAppearanceManagerPropertyChanged;
         }
-
+        
         /// <summary>
         /// When overridden in a derived class, is invoked whenever application code or internal processes call System.Windows.FrameworkElement.ApplyTemplate().
         /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
             // retrieve BackgroundAnimation storyboard
             //var border = GetTemplateChild("WindowBorder") as Border;
             //if (border != null)

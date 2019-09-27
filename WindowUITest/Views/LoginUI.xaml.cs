@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using FirstFloor.ModernUI.Windows.Controls;
+using GalaSoft.MvvmLight.Messaging;
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WindowUI.Windows.Controls;
+
 
 namespace WindowUITest
 {
@@ -25,6 +26,7 @@ namespace WindowUITest
         public LoginUI()
         {
             InitializeComponent();
+
         }
 
     }

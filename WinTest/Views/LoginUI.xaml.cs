@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using ControlzEx.Windows.Shell;
+using GalaSoft.MvvmLight.Messaging;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,10 @@ namespace WinTest
         public LoginUI()
         {
             InitializeComponent();
+            var v = this.WindowStyle;
+            var vvv = this.ResizeMode;
+            WindowChrome.SetIsHitTestVisibleInChrome(this, true);
+            //MahApps.Metro.Behaviors.BorderlessWindowBehavior
         }
     }
 }

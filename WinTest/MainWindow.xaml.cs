@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ControlzEx.Windows.Shell;
+using MahApps.Metro.Behaviors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,8 @@ namespace WinTest
         public MainWindow()
         {
             InitializeComponent();
+            //WindowChrome.SetIsHitTestVisibleInChrome(this,false);
+            
         }
     }
 }

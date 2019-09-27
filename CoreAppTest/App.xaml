@@ -1,0 +1,23 @@
+﻿<Application x:Class="CoreAppTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CoreAppTest"
+             xmlns:coreLib="clr-namespace:CoreLibrary;assembly=CoreLibrary"
+             StartupUri="/view/LoginView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--MahApps-->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <!--Accent and AppTheme setting-->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+                <ResourceDictionary>
+                    <coreLib:OpenNewViewParamConverter x:Key="OpenNewViewParamConverter"/>
+                    <coreLib:CurrentViewParamConverter x:Key="CurrentViewParamConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

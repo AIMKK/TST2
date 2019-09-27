@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using FirstFloor.ModernUI.Windows.Controls;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using System;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowUI;
-using WindowUI.Windows.Controls;
+
 
 namespace WindowUITest
 {
@@ -20,7 +21,7 @@ namespace WindowUITest
 
         public RelayCommand<CurrentViewParam> GridItemSelectCommand { get; set; }
 
-        public RelayCommand<ExCommandParameter> GridItemSelectCommand2 { get; set; }
+        public RelayCommand<object> GridItemSelectCommand2 { get; set; }
         
         public string LoginType { get; set; }
 
@@ -39,7 +40,7 @@ namespace WindowUITest
             FormLoaded = new RelayCommand<object>(formLoaded);
             //
             GridItemSelectCommand = new RelayCommand<CurrentViewParam>(gridItemSelectCommand);
-            GridItemSelectCommand2 = new RelayCommand<ExCommandParameter>(gridItemSelectCommand2);
+          
             //
             LoginType = Global.CurrentLoginType;
         }
@@ -90,19 +91,7 @@ namespace WindowUITest
             //
             SimpleIoc.Default.Register<LoginLocationSelectUIViewModel>();
         }
-        /// <summary>
-        /// gridDoubleClickCommand
-        /// </summary>
-        /// <param name="selectedItem"></param>
-        private void gridItemSelectCommand2(ExCommandParameter viewCmdParam)
-        {
-            if (viewCmdParam != null)
-            {
-                System.Windows.Input.MouseButtonEventArgs args = viewCmdParam.EventArgs as System.Windows.Input.MouseButtonEventArgs;
-                var v= args.OriginalSource;
-               
-            }
-        }
+        
         
         /// <summary>
         /// gridDoubleClickCommand

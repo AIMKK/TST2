@@ -6,9 +6,8 @@
         xmlns:local="clr-namespace:WindowUITest"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        xmlns:winui="http://WindowUI.com/ModernUI"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:winui="http://firstfloorsoftware.com/ModernUI"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         WindowStyle="None"
         Style="{StaticResource BlankWindow}"
         Title="MainUI" Height="711" Width="995">
@@ -25,9 +24,9 @@
             <i:InvokeCommandAction Command="{Binding FormClosedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
         </i:EventTrigger>
         <!--Esc-->
-        <ei:KeyTrigger FiredOn="KeyDown" Key="Esc">
+        <i:KeyTrigger FiredOn="KeyDown" Key="Esc">
             <i:InvokeCommandAction Command="{Binding FormClosedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
-        </ei:KeyTrigger>
+        </i:KeyTrigger>
 
     </i:Interaction.Triggers>
     <Grid>

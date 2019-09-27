@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,12 @@ namespace WinTest
 
         public RelayCommand<OpenNewViewParam> ShowLoginLocationSelect { get; set; }
 
+        private IDialogCoordinator dialogCoordinator;
+
         public LoginUIViewModel()
         {
+            dialogCoordinator=DialogCoordinator.Instance;
+            //
             LoginCommand = new RelayCommand<OpenNewViewParam>(loginBtnClick);
             //
             FormLoaded = new RelayCommand<Window>(formLoaded);
@@ -33,6 +38,18 @@ namespace WinTest
             //
             iniData();
         }
+
+        // Methods
+        private void FooMessage()
+        {
+            dialogCoordinator.ShowMessageAsync(this, "HEADER", "MESSAGE", MessageDialogStyle.AffirmativeAndNegative);            
+        }
+
+        private void FooProgress()
+        {
+            dialogCoordinator.ShowProgressAsync(this, "HEADER", "MESSAGE");
+        }
+
 
         public List<LanguageObject>LangList { get; set; }
 
@@ -153,6 +170,15 @@ namespace WinTest
         /// <param name="viewParam"></param>
         private void loginBtnClick(OpenNewViewParam viewParam)
         {
+            MainWindow m = new MainWindow();
+            m.ShowDialog();
+            return;
+            //var v = DialogParticipation.GetRegister(viewParam.CurrentView);
+            //FooMessage();// FooProgress();
+            (viewParam.CurrentView as MahApps.Metro.Controls.MetroWindow).ShowDialogsOverTitleBar = false;
+             
+            (viewParam.CurrentView as MahApps.Metro.Controls.MetroWindow).ShowOverlayAsync();
+            return;
             if (viewParam==null)
             {
                 return;
@@ -194,7 +220,7 @@ namespace WinTest
                 loginLocSelectVM.LoginType = viewParam.ParamValueFromCurrentView as string;
             }
             //
-            if (targetView.ShowDialog()==true)
+            if (targetView.ShowDialog(viewParam.CurrentView) ==true)
             {
                 //
                 LoginLocationCode=loginLocSelectVM.SelectedUserAccess.LocationCode;
