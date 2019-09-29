@@ -18,6 +18,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="ContentTemplate\LoginContentTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\LoginLocationSelectView.xaml">
       <SubType>Designer</SubType>
     </Page>

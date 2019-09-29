@@ -1,12 +1,21 @@
-﻿<Window x:Class="CoreAppTest.MainView"
+﻿<Controls:MetroWindow x:Class="CoreAppTest.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoreAppTest"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"                      
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"  
+        WindowStartupLocation="CenterScreen"
+        TitleCharacterCasing="Normal"
+        GlowBrush="#366CB3" 
+        BorderThickness="1"
+        WindowTransitionsEnabled="False"
+        FontFamily="宋体"
+        TextOptions.TextFormattingMode="Display"
+        Title="MainView" Height="711" Width="995">
     <Grid>
         
     </Grid>
-</Window>
+</Controls:MetroWindow>

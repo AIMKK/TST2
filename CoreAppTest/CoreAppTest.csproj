@@ -7,17 +7,49 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataModel\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="Image\" />
+    <None Remove="Image\btn_RS_CHI_over.png" />
+    <None Remove="Image\btn_RS_CHS.png" />
+    <None Remove="Image\btn_RS_CHS_click.png" />
+    <None Remove="Image\btn_RS_CHS_over.png" />
+    <None Remove="Image\btn_SHOP_CHI_over.png" />
+    <None Remove="Image\btn_SHOP_CHS.png" />
+    <None Remove="Image\btn_SHOP_CHS_click.png" />
+    <None Remove="Image\btn_SHOP_CHS_over.png" />
+    <None Remove="Image\btn_WH_CHI_over.png" />
+    <None Remove="Image\btn_WH_CHS.png" />
+    <None Remove="Image\btn_WH_CHS_click.png" />
+    <None Remove="Image\btn_WH_CHS_over.png" />
+    <None Remove="Image\irms_icon.ico" />
+    <None Remove="Image\login_logo.jpg" />
+    <None Remove="ViewModel\LoginLocationSelectViewModel.cs~RF10ab3c9.TMP" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
     <PackageReference Include="MahApps.Metro" Version="2.0.0-alpha0490" />
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoreLibrary\CoreLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\btn_RS_CHI_over.png" />
+    <Resource Include="Image\btn_RS_CHS.png" />
+    <Resource Include="Image\btn_RS_CHS_click.png" />
+    <Resource Include="Image\btn_RS_CHS_over.png" />
+    <Resource Include="Image\btn_SHOP_CHI_over.png" />
+    <Resource Include="Image\btn_SHOP_CHS.png" />
+    <Resource Include="Image\btn_SHOP_CHS_click.png" />
+    <Resource Include="Image\btn_SHOP_CHS_over.png" />
+    <Resource Include="Image\btn_WH_CHI_over.png" />
+    <Resource Include="Image\btn_WH_CHS.png" />
+    <Resource Include="Image\btn_WH_CHS_click.png" />
+    <Resource Include="Image\btn_WH_CHS_over.png" />
+    <Resource Include="Image\irms_icon.ico" />
+    <Resource Include="Image\login_logo.jpg" />
   </ItemGroup>
 
 </Project>

@@ -16,6 +16,19 @@
                     <coreLib:OpenNewViewParamConverter x:Key="OpenNewViewParamConverter"/>
                     <coreLib:CurrentViewParamConverter x:Key="CurrentViewParamConverter"/>
                 </ResourceDictionary>
+                <!--local-->
+                <ResourceDictionary>
+                    <local:LoginTypeSelectMenuConverter x:Key="LoginTypeSelectMenuConverter" />
+                    <local:loginTypeValueConverter x:Key="loginTypeValueConverter" />
+                    <local:IsCurrentLoginLocationTypeConverter x:Key="IsCurrentLoginLocationTypeConverter" />
+                    <local:PasswordConverter x:Key="PasswordConverter" />
+                </ResourceDictionary>
+                <!--view-->
+                <ResourceDictionary Source="ContentTemplate/LoginContentTemplate.xaml" />
+                <!--ViewModelLocator-->
+                <ResourceDictionary>
+                    <local:ViewModelLocator x:Key="Locator" />
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

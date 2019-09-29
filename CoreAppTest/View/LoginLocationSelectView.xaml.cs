@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -15,7 +16,7 @@ namespace CoreAppTest
     /// <summary>
     /// LoginLocationSelectView.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginLocationSelectView : Window
+    public partial class LoginLocationSelectView : MetroWindow
     {
         public LoginLocationSelectView()
         {
