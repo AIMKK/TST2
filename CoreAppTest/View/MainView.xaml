@@ -9,13 +9,31 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"  
         WindowStartupLocation="CenterScreen"
         TitleCharacterCasing="Normal"
-        GlowBrush="#366CB3" 
+        GlowBrush="#366CB3"        
         BorderThickness="1"
         WindowTransitionsEnabled="False"
         FontFamily="宋体"
         TextOptions.TextFormattingMode="Display"
         Title="MainView" Height="711" Width="995">
+    <Window.DataContext>
+        <Binding Path="MainViewModel" Source="{StaticResource Locator}"></Binding>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <!--Loaded-->
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FormLoadedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </i:EventTrigger>
+        <!--Closed-->
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding FormClosedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </i:EventTrigger>
+        <!--Esc-->
+        <i:KeyTrigger FiredOn="KeyDown" Key="Esc">
+            <i:InvokeCommandAction Command="{Binding FormClosedCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
+        </i:KeyTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-        
+
     </Grid>
 </Controls:MetroWindow>
